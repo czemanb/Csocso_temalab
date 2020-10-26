@@ -21,7 +21,15 @@ class ForgotPasswordFragment : Fragment(R.layout.forgot_password),View.OnClickLi
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.btnSend -> requireActivity().onBackPressed()
+            R.id.btnSend -> {when {
+                etEmail.text.toString().isEmpty() -> {
+                    etEmail.requestFocus()
+                    etEmail.error = "Please enter your email address"
+            }
+            else -> {
+                requireActivity().onBackPressed()
+            }
+        }}
             R.id.btnCancel -> requireActivity().onBackPressed()
 
         }
