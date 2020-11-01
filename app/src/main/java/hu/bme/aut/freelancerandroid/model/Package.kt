@@ -10,8 +10,10 @@ data class Package(
     var from_long: Double,
     var to_long: Double,
     var status: Status,
-    val senderId: Int,
-    val transferId: Int?
+    var user: User,
+    var transfer: Transfer?
+    //val senderId: Int,
+    //val transferId: Int?
 
 
 )

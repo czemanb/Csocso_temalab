@@ -6,5 +6,6 @@ data class Vehicle(
     var y: Int,
     var z: Int,
     var weightLimit: Int,
-    var ownerId: Long
+    val owner: User
+    //var ownerId: Long
 )
