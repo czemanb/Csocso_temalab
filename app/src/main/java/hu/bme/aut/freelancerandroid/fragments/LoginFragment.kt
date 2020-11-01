@@ -6,7 +6,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.preference.PreferenceManager
 import hu.bme.aut.freelancerandroid.R
 import kotlinx.android.synthetic.main.login.*
 import java.util.*
@@ -37,7 +36,7 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
                     etPassword.error = "Please enter your password"
                 }
                 else -> {
-                    navController.navigate(R.id.action_loginFragment_to_mainFragment)
+                    navController.navigate(R.id.action_loginFragment_to_home_screen)
                 }
             }}
             R.id.btnForgotPassword -> {navController.navigate(R.id.action_loginFragment_to_forgotPasswordFragment)}
