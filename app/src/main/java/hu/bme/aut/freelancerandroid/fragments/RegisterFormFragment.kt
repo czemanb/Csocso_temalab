@@ -20,7 +20,7 @@ class RegisterFormFragment : Fragment(R.layout.register_form), View.OnClickListe
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btnRegister -> {navController.navigate(R.id.action_loginFragment_to_home_screen)}
+            R.id.btnRegister -> {navController.navigate(R.id.action_registerFormFragment_to_home_screen)}
             R.id.btnCancel -> requireActivity().onBackPressed()
 
         }
