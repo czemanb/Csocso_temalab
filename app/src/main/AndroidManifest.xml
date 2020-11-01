@@ -17,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TransportScreen"></activity>
+        <activity
+            android:name=".PackagesSreen"
+            android:label="@string/title_activity_packages_sreen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".TransportScreen" />
         <activity android:name=".PackageSrceen" />
         <activity android:name=".home_screen" />
 

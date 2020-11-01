@@ -4,36 +4,57 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
+import kotlinx.android.synthetic.main.layout_dialog.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
-class PackageListAdapater(val context: Context) : RecyclerView.Adapter<PackageListAdapater.ViewHolder>(){
+class PackageListAdapater(private val listener: PackageItemClickListener) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
 
-   val packages  = mutableListOf<Packages>(
-        Packages("item1"),
-        Packages("item2"),
-        Packages("item3")
-   )
+   private val packages  = mutableListOf<Packages>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.package_row, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageViewHolder {
+        val itemView = LayoutInflater
+            .from(parent.context)
+            .inflate(R.layout.package_row, parent, false)
 
-        return ViewHolder(view)
+        return PackageViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
         return packages.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
         val pckg = packages[position]
 
-        holder.textView.text = pckg.toDoText
+        holder.nameTextView.text = pckg.name
     }
 
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val textView = itemView.textView
+    fun addPackage(pckg: Packages) {
+        packages.add(pckg)
+        notifyItemInserted(packages.size - 1)
+    }
+
+    fun update(pckgs: List<Packages>) {
+        packages.clear()
+        packages.addAll(pckgs)
+        notifyDataSetChanged()
+    }
+
+    interface PackageItemClickListener{
+        fun onItemChanged(item: Packages)
+    }
+
+    inner class PackageViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        val nameTextView : TextView
+
+        init{
+            nameTextView = itemView.findViewById(R.id.textView)
+
+        }
     }
 }
