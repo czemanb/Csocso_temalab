@@ -19,7 +19,7 @@ class RegisterCar : Fragment(R.layout.register_car), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-        
+
         }
     }
 }
