@@ -1,18 +1,20 @@
-package hu.bme.aut.freelancerandroid.fragments
+package hu.bme.aut.freelancerandroid.ui.user.login
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import hu.bme.aut.freelancerandroid.R
 import kotlinx.android.synthetic.main.login.*
-import java.util.*
+
 
 class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
 
     lateinit var navController: NavController
+    //private val viewModel: LoginViewModel by viewModels(factoryProducer = { SavedStateVMFactory(this) })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

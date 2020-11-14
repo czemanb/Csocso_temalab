@@ -1,4 +1,4 @@
-package hu.bme.aut.freelancerandroid.model
+package hu.bme.aut.freelancerandroid.repository.model
 
 data class Vehicle(
     val id: Long,
