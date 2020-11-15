@@ -28,24 +28,41 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.root_container, HomeFragment())
+            .commitAllowingStateLoss()
+
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.item1 -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.root_container, HomeFragment())
                         .commitAllowingStateLoss()
+                    navView.
                 }
                 R.id.item2 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, ProfileFragment())
+                        .replace(R.id.root_container, PackageScreenFragment())
                         .commitAllowingStateLoss()
                 }
                 R.id.item3 -> {
                     supportFragmentManager.beginTransaction()
+                        .replace(R.id.root_container, TransportScreenFragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.item4 -> {
+                    supportFragmentManager.beginTransaction()
                         .replace(R.id.root_container, VehicleScreenFragment())
                         .commitAllowingStateLoss()
                 }
-                R.id.item4 -> Toast.makeText(applicationContext, "Kijelentkezes", Toast.LENGTH_SHORT).show()
+                R.id.item5 -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.root_container, ProfileFragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.item6 -> {
+                    //log out
+                }
             }
             true
         }
