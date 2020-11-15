@@ -38,7 +38,6 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.root_container, HomeFragment())
                         .commitAllowingStateLoss()
-                    navView.
                 }
                 R.id.item2 -> {
                     supportFragmentManager.beginTransaction()

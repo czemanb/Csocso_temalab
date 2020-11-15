@@ -29,4 +29,17 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="new_transport_item">Uj szallitas</string>
+
+    <string-array name="city_names">
+        <item>Budapest</item>
+        <item>Debrecen</item>
+        <item>Miskolc</item>
+    </string-array>
+
+    <string-array name="package_sizes">
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+    </string-array>
 </resources>

@@ -6,7 +6,9 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 
@@ -17,6 +19,8 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
     }
 
     private lateinit var nameEditText: EditText
+    private lateinit var citySpinner: Spinner
+    private lateinit var packageSizeSpinner: Spinner
     private lateinit var listener: NewPackageItemDialogListener
 
     override fun onAttach(context: Context) {
@@ -24,30 +28,11 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         listener = context as? NewPackageItemDialogListener
             ?: throw RuntimeException("Activity must implement the NewShoppingItemDialogListener interface!")
 
-        val options = arrayOf("Budapest", "Miskolc", "Debrecen")
 
-        //option = findViewById(spinner1) as Spinner
-
-        //option.adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, options)
-
-        /*option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                //options.get(position)
-            }
-        }*/
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.new_package_item)
             .setView(getContentView())
             .setPositiveButton(R.string.ok) { dialogInterface, i ->
                 if (isValid()) {
@@ -64,6 +49,22 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         val contentView =
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_package, null)
         nameEditText = contentView.findViewById(R.id.etPackageName)
+        citySpinner = contentView.findViewById(R.id.spinnerCity)
+        citySpinner.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                resources.getStringArray(R.array.city_names)
+            )
+        )
+        packageSizeSpinner = contentView.findViewById(R.id.spinnerPackageSize)
+        packageSizeSpinner.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                resources.getStringArray(R.array.package_sizes)
+            )
+        )
         return contentView
     }
 

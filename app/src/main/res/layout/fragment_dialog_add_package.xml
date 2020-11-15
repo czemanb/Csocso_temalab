@@ -7,19 +7,6 @@
     android:minWidth="400dp"
     android:weightSum="20">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:background="#294980">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Uj csomag feladasa:"/>
-
-    </FrameLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,14 +15,15 @@
         android:weightSum="10">
 
         <TextView
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kerem valasszon varost:"
-            android:layout_weight="6"/>
+            android:layout_weight="7"/>
 
         <Spinner
-            android:id="@+id/spinner1"
-            android:layout_weight="4"
+            android:id="@+id/spinnerCity"
+            android:layout_weight="3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -54,26 +42,9 @@
             android:layout_weight="6"/>
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerPackageSize"
             android:layout_weight="4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kezbesitesi hatarido:" />
-
-        <EditText
-            android:id="@+id/etDate"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -82,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:hint="Csomag neve:"/>
+        android:hint="Csomag neve"/>
 
     <EditText
         android:id="@+id/etFromAddress"
@@ -97,5 +68,22 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:hint="Cel cim"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        android:text="Kezbesitesi hatarido"/>
+
+    <DatePicker
+        android:id="@+id/dpPackageDate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
 
 </LinearLayout>
