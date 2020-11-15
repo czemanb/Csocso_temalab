@@ -28,7 +28,7 @@
             android:layout_weight="6"/>
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spinnerTransportCity"
             android:layout_weight="4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -44,11 +44,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kerem valasszon autot:"
+            android:text="Kerem valasszon jarmuvet:"
             android:layout_weight="6"/>
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerVehicle"
             android:layout_weight="4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -4,11 +4,13 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 
@@ -35,8 +37,12 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         return AlertDialog.Builder(requireContext())
             .setView(getContentView())
             .setPositiveButton(R.string.ok) { dialogInterface, i ->
-                if (isValid()) {
+                if (isValid())
                     listener.onPackageCreated(getPackage())
+                else{
+                    val myToast = Toast.makeText(requireActivity().applicationContext,"Kerem minden adatot toltson ki",Toast.LENGTH_SHORT)
+                    myToast.setGravity(Gravity.CENTER, 0, 0)
+                    myToast.show()
                 }
             }
             .setNegativeButton(R.string.cancel, null)
