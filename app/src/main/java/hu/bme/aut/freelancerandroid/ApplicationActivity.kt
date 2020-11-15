@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
 import hu.bme.aut.freelancerandroid.model.Transfer
+import hu.bme.aut.freelancerandroid.model.Vehicle
 import kotlinx.android.synthetic.main.activity_application.*
 import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
@@ -15,7 +16,7 @@ import kotlin.concurrent.thread
 lateinit var toggle: ActionBarDrawerToggle
 
 class ApplicationActivity : AppCompatActivity(), AddPackageDialogFragment.NewPackageItemDialogListener,
-AddTransportDialogFragment.NewTransportItemDialogListener{
+AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragment.NewTruckItemDialogListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,11 @@ AddTransportDialogFragment.NewTransportItemDialogListener{
                         .replace(R.id.root_container, ProfileFragment())
                         .commitAllowingStateLoss()
                 }
-                R.id.item3 -> Toast.makeText(applicationContext, "Clicked item 3", Toast.LENGTH_SHORT).show()
+                R.id.item3 -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.root_container, VehicleScreenFragment())
+                        .commitAllowingStateLoss()
+                }
                 R.id.item4 -> Toast.makeText(applicationContext, "Kijelentkezes", Toast.LENGTH_SHORT).show()
             }
             true
@@ -69,5 +74,11 @@ AddTransportDialogFragment.NewTransportItemDialogListener{
         }
     }
 
-
+    override fun onTruckCreated(newItem: Vehicle) {
+        thread {
+            runOnUiThread {
+                VehicleScreenFragment.adapter.addTruck(newItem)
+            }
+        }
+    }
 }

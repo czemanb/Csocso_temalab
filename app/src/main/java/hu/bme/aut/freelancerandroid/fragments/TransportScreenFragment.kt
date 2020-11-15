@@ -26,7 +26,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
     override fun onItemChanged(item: Transfer) {
         /* thread {
              database.shoppingItemDao().update(item)
-             Log.d("MainActivity", "ShoppingItem update was successful")
+             Log.d("LoginActivity", "ShoppingItem update was successful")
          }*/
     }
 

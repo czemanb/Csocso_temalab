@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="300dp"
+    android:minWidth="400dp">
+
+   <EditText
+       android:id="@+id/etTruckName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="A jarmu neve"/>
+
+    <EditText
+        android:id="@+id/etX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Szelessege"/>
+
+    <EditText
+        android:id="@+id/etY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Magassaga"/>
+
+    <EditText
+        android:id="@+id/etZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hossza"/>
+
+    <EditText
+        android:id="@+id/etMaxWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Maximalis suly"/>
+
+</LinearLayout>
