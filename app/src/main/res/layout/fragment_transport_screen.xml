@@ -6,15 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PackageScreenFragment">
 
-    <TextView
-        android:id="@+id/tvNoTransport"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clNoTransport"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jelenleg nincs aktiv szallitasa..."
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jelenleg nincs aktiv szallitasa..."
+            android:textSize="24dp"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:src="@drawable/nodelivery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"

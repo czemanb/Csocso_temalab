@@ -3,9 +3,12 @@ package hu.bme.aut.freelancerandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import hu.bme.aut.freelancerandroid.data.Packages
@@ -89,13 +92,13 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         thread {
             runOnUiThread {
                 PackageScreenFragment.adapter.addPackage(newItem)
-                var noPackage: TextView
-                noPackage = findViewById(R.id.tvNoPackage)
+                var noPckg: ConstraintLayout
+                noPckg = findViewById(R.id.noPackage)
                 if(PackageScreenFragment.adapter.getItemCount() != 0)
-                    noPackage.isGone = true
+                    noPckg.isGone = true
                 else{
-                    noPackage.isGone = false
-                    noPackage.isVisible = true
+                    noPckg.isGone = false
+                    noPckg.isVisible = true
                 }
             }
         }
@@ -105,8 +108,8 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         thread {
             runOnUiThread {
                 TransportScreenFragment.adapter.addTransport(newItem)
-                var noTransport: TextView
-                noTransport = findViewById(R.id.tvNoTransport)
+                var noTransport: ConstraintLayout
+                noTransport = findViewById(R.id.clNoTransport)
                 if(TransportScreenFragment.adapter.getItemCount() != 0)
                     noTransport.isGone = true
                 else{
@@ -121,8 +124,8 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         thread {
             runOnUiThread {
                 VehicleScreenFragment.adapter.addTruck(newItem)
-                var noVehicle: TextView
-                noVehicle = findViewById(R.id.tvNoVehicle)
+                var noVehicle: ConstraintLayout
+                noVehicle = findViewById(R.id.clNoVehicle)
                 if(VehicleScreenFragment.adapter.getItemCount() != 0)
                     noVehicle.isGone = true
                 else{
