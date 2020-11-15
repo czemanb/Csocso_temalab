@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/package_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#934F4F"
+        app:layout_constraintBottom_toTopOf="@+id/transport_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="5"
+        app:srcCompat="@drawable/package_main_screen" />
+
+    <ImageButton
+        android:id="@+id/transport_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#3D4868"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/package_button"
+        app:layout_constraintVertical_weight="5"
+        app:srcCompat="@drawable/truck_main_sreen" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

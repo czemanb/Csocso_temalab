@@ -3,24 +3,15 @@ package hu.bme.aut.freelancerandroid.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.EditText
-import android.widget.Spinner
-import androidx.fragment.app.DialogFragment
-import com.google.android.material.internal.ViewUtils.getContentView
-import hu.bme.aut.freelancerandroid.PackageSrceen
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.layout_dialog.*
-import kotlinx.android.synthetic.main.layout_dialog.view.*
 
-class MessageFragment : DialogFragment() {
+class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
+
     interface NewPackageItemDialogListener{
         fun onPackageCreated(newItem: Packages)
     }
@@ -71,7 +62,7 @@ class MessageFragment : DialogFragment() {
 
     private fun getContentView(): View {
         val contentView =
-            LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
+            LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_package, null)
         nameEditText = contentView.findViewById(R.id.etPackageName)
         return contentView
     }
