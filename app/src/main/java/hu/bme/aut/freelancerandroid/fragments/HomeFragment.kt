@@ -20,18 +20,21 @@ class HomeFragment  : Fragment(R.layout.fragment_home_screen){
         super.onViewCreated(view, savedInstanceState)
 
         package_button.setOnClickListener {
+            requireActivity().setTitle("Packages")
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.root_container, PackageScreenFragment())
                 .commitAllowingStateLoss()
         }
 
         transport_button.setOnClickListener {
+            requireActivity().setTitle("Transports")
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.root_container, TransportScreenFragment())
                 .commitAllowingStateLoss()
         }
 
         vehicle_button.setOnClickListener {
+            requireActivity().setTitle("Vehicles")
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.root_container, VehicleScreenFragment())
                 .commitAllowingStateLoss()

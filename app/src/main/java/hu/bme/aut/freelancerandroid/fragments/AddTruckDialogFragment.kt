@@ -10,10 +10,12 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.isGone
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.model.Transfer
 import hu.bme.aut.freelancerandroid.model.Vehicle
+import kotlinx.android.synthetic.main.fragment_vehicle_screen.*
 import java.util.*
 
 class AddTruckDialogFragment: androidx.fragment.app.DialogFragment() {
@@ -40,8 +42,9 @@ class AddTruckDialogFragment: androidx.fragment.app.DialogFragment() {
             .setTitle(R.string.new_transport_item)
             .setView(getContentView())
             .setPositiveButton(R.string.ok) { dialogInterface, i ->
-                  if (isValid())
+                  if (isValid()) {
                       listener.onTruckCreated(getTruck())
+                  }
                   else {
                       val myToast = Toast.makeText(requireActivity().applicationContext,"Kerem minden adatot toltson ki",Toast.LENGTH_SHORT)
                       myToast.setGravity(Gravity.CENTER, 0, 0)

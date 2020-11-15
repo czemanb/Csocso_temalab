@@ -16,17 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".NavigationDrawerActivity"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".PackagesSreen"
-            android:label="@string/title_activity_packages_sreen"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TransportScreen" />
-        <activity android:name=".PackageSrceen" />
+
         <activity android:name=".ApplicationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
