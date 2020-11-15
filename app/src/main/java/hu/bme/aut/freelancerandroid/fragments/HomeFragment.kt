@@ -30,5 +30,11 @@ class HomeFragment  : Fragment(R.layout.fragment_home_screen){
                 .replace(R.id.root_container, TransportScreenFragment())
                 .commitAllowingStateLoss()
         }
+
+        vehicle_button.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.root_container, VehicleScreenFragment())
+                .commitAllowingStateLoss()
+        }
     }
 }
