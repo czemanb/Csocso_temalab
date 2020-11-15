@@ -3,8 +3,8 @@ package hu.bme.aut.freelancerandroid.model
 import java.util.*
 
 data class Transfer(
-    val id: Long
-    //val date: Date,
+    //val id: Long,
+    val date: Date
     //var carrier: User,
     //var vehicle: Vehicle,
     //val town: Town

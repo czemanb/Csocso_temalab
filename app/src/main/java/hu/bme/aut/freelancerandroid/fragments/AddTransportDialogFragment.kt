@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.EditText
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.model.Transfer
+import java.util.*
 
 class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
 
@@ -19,7 +21,7 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
         fun onTransportCreated(newItem: Transfer)
     }
 
-    private lateinit var nameEditText2: EditText
+    private lateinit var nameEditText2: DatePicker
     private lateinit var listener: AddTransportDialogFragment.NewTransportItemDialogListener
 
     override fun onAttach(context: Context) {
@@ -30,29 +32,34 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.new_package_item)
+            .setTitle(R.string.new_transport_item)
             .setView(getContentView())
             .setPositiveButton(R.string.ok) { dialogInterface, i ->
-                if (isValid()) {
+              //  if (isValid()) {
                     listener.onTransportCreated(getTransport())
-                }
+               // }
             }
             .setNegativeButton(R.string.cancel, null)
             .create()
     }
 
-    private fun isValid() = nameEditText2.text.isNotEmpty()
+   // private fun isValid() = nameEditText2.text.isNotEmpty()
 
     private fun getContentView(): View {
         val contentView =
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_transport, null)
-        nameEditText2 = contentView.findViewById(R.id.etPackageName2)
+        nameEditText2 = contentView.findViewById(R.id.dpTrasportDate)
         return contentView
     }
 
-    private fun getTransport() = Transfer(
-        id = nameEditText2.text.toString().toLong()
-    )
+    private fun getTransport() : Transfer{
+        val year = nameEditText2.year
+        val month = nameEditText2.month
+        val day = nameEditText2.dayOfMonth
+        val selectedDate = Date(year, month, day)
+
+        return Transfer(date = selectedDate)
+    }
 
     companion object{
         const val TAG = "NewTransportDialogFragment"
