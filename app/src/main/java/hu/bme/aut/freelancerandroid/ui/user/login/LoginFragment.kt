@@ -22,7 +22,7 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController= Navigation.findNavController(view)
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        //loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         btnSignIn.setOnClickListener(this)
         btnForgotPassword.setOnClickListener(this)
@@ -43,9 +43,9 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
                     etPassword.error = "Please enter your password"
                 }
                 else -> {
-                    loginViewModel.email = etPersonName.text.toString()
-                    loginViewModel.password = etPersonName.text.toString()
-                    loginViewModel.loginUser(loginViewModel.email,loginViewModel.password)
+                    //loginViewModel.email = etPersonName.text.toString()
+                    //loginViewModel.password = etPersonName.text.toString()
+                    //loginViewModel.loginUser(loginViewModel.email,loginViewModel.password)
                     navController.navigate(R.id.action_loginFragment_to_home_screen)
                 }
             }}
