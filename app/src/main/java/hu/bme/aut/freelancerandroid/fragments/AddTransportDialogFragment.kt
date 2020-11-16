@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import java.util.*
 
 class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {

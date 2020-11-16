@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import hu.bme.aut.freelancerandroid.R
-import hu.bme.aut.freelancerandroid.model.User
+import hu.bme.aut.freelancerandroid.repository.model.User
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.register_form.*
 

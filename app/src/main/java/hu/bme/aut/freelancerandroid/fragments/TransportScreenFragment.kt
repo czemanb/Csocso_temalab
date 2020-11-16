@@ -12,7 +12,7 @@ import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
 import hu.bme.aut.freelancerandroid.adapter.TransportListAdapater
 import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.TransportListAdapater
 import hu.bme.aut.freelancerandroid.adapter.TruckListAdapter
-import hu.bme.aut.freelancerandroid.model.Transfer
-import hu.bme.aut.freelancerandroid.model.Vehicle
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*

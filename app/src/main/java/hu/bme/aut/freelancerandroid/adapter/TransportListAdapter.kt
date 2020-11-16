@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 

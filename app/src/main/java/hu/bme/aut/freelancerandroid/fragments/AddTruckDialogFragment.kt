@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.model.Transfer
-import hu.bme.aut.freelancerandroid.model.Vehicle
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import kotlinx.android.synthetic.main.fragment_vehicle_screen.*
 import java.util.*
 

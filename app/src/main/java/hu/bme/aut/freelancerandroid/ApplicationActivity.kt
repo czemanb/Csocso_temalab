@@ -3,18 +3,14 @@ package hu.bme.aut.freelancerandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
-import hu.bme.aut.freelancerandroid.model.Transfer
-import hu.bme.aut.freelancerandroid.model.Vehicle
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import kotlinx.android.synthetic.main.activity_application.*
 import kotlinx.android.synthetic.main.fragment_vehicle_screen.*
 import kotlinx.android.synthetic.main.nav_view.*
@@ -135,4 +131,6 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             }
         }
     }
+
+
 }

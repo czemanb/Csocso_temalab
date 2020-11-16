@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.TruckListAdapter.TruckViewHolder
-import hu.bme.aut.freelancerandroid.model.Transfer
-import hu.bme.aut.freelancerandroid.model.Vehicle
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 
 class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickListener) : RecyclerView.Adapter<TruckViewHolder>(){
 
