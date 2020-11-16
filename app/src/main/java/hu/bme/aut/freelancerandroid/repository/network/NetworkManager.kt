@@ -13,19 +13,21 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkManager {
-    private const val SERVICE_URL = "https://freelancer-carrier-spring.herokuapp.com/?fbclid=IwAR1CzH1H6hDuK860Y2Dr4vgi3cYN0nJwfjAY-a8FbDtbChSAu4abvRHnzkY"
+    private const val SERVICE_URL =
+        "https://freelancer-carrier-spring.herokuapp.com/api/"
 
-    public val freelancerApi: FreelancerApi
-
-    init {
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(SERVICE_URL)
-            .client(OkHttpClient.Builder().build())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        freelancerApi = retrofit.create(FreelancerApi::class.java)
+    val freelancerApi: FreelancerApi by lazy {
+        retrofit.build().create(FreelancerApi::class.java)
     }
+
+
+    val retrofit: Retrofit.Builder by lazy {
+        Retrofit.Builder().baseUrl(SERVICE_URL)
+        .client(OkHttpClient.Builder().build())
+        .addConverterFactory(GsonConverterFactory.create())
+    }
+
+
 
     //User
 //     fun fetchUsers(): List<User>{

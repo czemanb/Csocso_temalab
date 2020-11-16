@@ -2,8 +2,11 @@ package hu.bme.aut.freelancerandroid.ui.user.login
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -14,11 +17,13 @@ import kotlinx.android.synthetic.main.login.*
 class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
 
     lateinit var navController: NavController
-    //private val viewModel: LoginViewModel by viewModels(factoryProducer = { SavedStateVMFactory(this) })
+    lateinit var loginViewModel: LoginViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController= Navigation.findNavController(view)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
         btnSignIn.setOnClickListener(this)
         btnForgotPassword.setOnClickListener(this)
         btnRegisterAcc.setOnClickListener(this)
@@ -38,6 +43,9 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
                     etPassword.error = "Please enter your password"
                 }
                 else -> {
+                    loginViewModel.email = etPersonName.text.toString()
+                    loginViewModel.password = etPersonName.text.toString()
+                    loginViewModel.loginUser(loginViewModel.email,loginViewModel.password)
                     navController.navigate(R.id.action_loginFragment_to_home_screen)
                 }
             }}
@@ -45,4 +53,5 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
             R.id.btnRegisterAcc -> {navController.navigate(R.id.action_loginFragment_to_registerFormFragment)}
         }
     }
+
 }
