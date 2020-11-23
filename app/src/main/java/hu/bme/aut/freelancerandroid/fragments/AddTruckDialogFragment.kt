@@ -70,11 +70,14 @@ class AddTruckDialogFragment: androidx.fragment.app.DialogFragment() {
     }
 
     private fun getTruck() = Vehicle(
+        id = 1, //Todo
         name = truckName.text.toString(),
         x = sizeX.text.toString().toInt(),
         y = sizeY.text.toString().toInt(),
         z = sizeZ.text.toString().toInt(),
-        weightLimit = maxWeight.text.toString().toInt()
+        weightLimit = maxWeight.text.toString().toDouble(),
+        owner = null,//TOdo
+        cc = null
     )
 
     companion object{

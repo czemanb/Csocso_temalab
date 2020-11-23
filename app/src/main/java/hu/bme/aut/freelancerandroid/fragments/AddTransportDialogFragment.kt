@@ -12,6 +12,7 @@ import android.widget.*
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.User
 import java.util.*
 
 class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
@@ -56,13 +57,14 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
         return contentView
     }
 
-    private fun getTransport() : Transfer{
-        val year = transportDate.year
-        val month = transportDate.month
-        val day = transportDate.dayOfMonth
-        val selectedDate = Date(year, month, day)
-
-        return Transfer(date = selectedDate)
+    private fun getTransport() : Transfer{ //Todo
+//        val year = transportDate.year
+//        val month = transportDate.month
+//        val day = transportDate.dayOfMonth
+//        val selectedDate = Date(year, month, day)
+//
+//        return Transfer(date = selectedDate)
+        return Transfer(null,null,null,null,null,null)
     }
 
     companion object{

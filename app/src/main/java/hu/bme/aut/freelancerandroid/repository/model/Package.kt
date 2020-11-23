@@ -1,28 +1,41 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
-data class Package(
-    val id: Long,
-    var name: String,
-    var size: String,
-    var weight: Double,
-    var from_lat: Double,
-    var to_lat: Double,
-    var from_long: Double,
-    var to_long: Double,
-    var status: Status,
-    var user: User,
-    var transfer: Transfer?
-    //val senderId: Int,
-    //val transferId: Int?
+import com.google.gson.annotations.SerializedName
+import java.util.*
 
+data class Package(
+@SerializedName("createdAt")
+val createdAt: String,
+@SerializedName("dateLimit")
+val dateLimit: String,
+@SerializedName("fromLat")
+val fromLat: Double,
+@SerializedName("fromLong")
+val fromLong: Double,
+@SerializedName("id")
+val id: Int,
+@SerializedName("name")
+val name: String,
+@SerializedName("sender")
+val sender: Sender,
+@SerializedName("size")
+val size: String,
+@SerializedName("status")
+val status: String,
+@SerializedName("toLat")
+val toLat: Double,
+@SerializedName("toLong")
+val toLong: Double,
+@SerializedName("town")
+val town: Town,
+@SerializedName("transfer")
+val transfer: Transfer,
+@SerializedName("value")
+val value: Int,
+@SerializedName("weight")
+val weight: Double
 
 )
 
-enum class Status{
-    WAITING, INCAR, DELIVERED
-}
 
-enum class Size{
-    S, M, L, XL
-}
 

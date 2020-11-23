@@ -6,14 +6,10 @@ import hu.bme.aut.freelancerandroid.repository.model.Package
 
 class PackRepository {
 
-    suspend fun fetchPackages(): List<Package>{
-        val packages: MutableList<Package> = mutableListOf()
-            val response = NetworkManager.freelancerApi.fetchPackages()
-            if (response.code() == 200){
-            packages.addAll(response.body()!!)
-            }
-        return packages
-    }
+
+    suspend fun fetchPackages(authHeader :String?)= NetworkManager.freelancerApi.fetchPackages(authHeader)
+
+    suspend fun fetchTransferPackages(transferId: Long) = NetworkManager.freelancerApi.fetchTransferPackages(transferId)
 
 
     suspend fun addPackage( pack: Package){

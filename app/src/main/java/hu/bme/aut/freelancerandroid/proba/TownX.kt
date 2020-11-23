@@ -1,12 +1,11 @@
-package hu.bme.aut.freelancerandroid.repository.model
+package hu.bme.aut.freelancerandroid.proba
+
 
 import com.google.gson.annotations.SerializedName
 
-class Town (
+data class TownX(
     @SerializedName("id")
-    val id: Long,
+    val id: Int,
     @SerializedName("name")
     val name: String
 )
-
-

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.register_form.*
 
 class ProfileFragment : Fragment(R.layout.fragment_profile), View.OnClickListener {
     val user: User =
-        User(1243, "John Smith", "johnsmith@gmail.com", "0620345677899", "valami", "valami")
+        User(1243, "John Smith", "johnsmith@gmail.com", "0620345677899", "valami", "valami",true)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
