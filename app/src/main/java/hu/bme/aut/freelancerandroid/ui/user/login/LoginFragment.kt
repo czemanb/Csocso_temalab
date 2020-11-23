@@ -65,9 +65,9 @@ class LoginFragment : Fragment(R.layout.login), View.OnClickListener{
                 else -> {
 
                     val email = etPersonName.text.toString()
-                    val password = etPersonName.text.toString()
-                    //loginViewModel.loginUser(email,password)
-                    val t =loginViewModel.loginUser("morvaiakos1998@gmail.com","luluka")
+                    val password = etPassword.text.toString()
+                    //val t =loginViewModel.loginUser("morvaiakos1998@gmail.com","luluka")
+                    val t = loginViewModel.loginUser(email,password)
                     GlobalVariable.token= t
 
 

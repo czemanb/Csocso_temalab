@@ -49,12 +49,11 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
             val response = userRepository.loginUser(LoginData(email, password))
             if (response.code() == 200) {
                 t = response.body()!!.token
-                GlobalVariable.token= t
                Log.e(TAG, "An error occured: $response.body()!!.token")
 
             }
             else{
-                Log.e(TAG, "An error occured: $response.body()!!.token")
+                Log.e(TAG, "An error occured:")
             }
         }
         return t
