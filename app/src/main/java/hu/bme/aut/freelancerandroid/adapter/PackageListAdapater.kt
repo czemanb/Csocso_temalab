@@ -6,15 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
-import kotlinx.android.synthetic.main.layout_dialog.view.*
+import hu.bme.aut.freelancerandroid.proba.pack1Item
+import hu.bme.aut.freelancerandroid.repository.model.Package
+import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
 class PackageListAdapater(private val listener: PackageItemClickListener) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
 
-   private val packages  = mutableListOf<Packages>()
+
+    private val differCallback = object : DiffUtil.ItemCallback<Package>() {
+        override fun areItemsTheSame(oldItem: Package, newItem: Package): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Package, newItem: Package): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val packages = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageViewHolder {
         val itemView = LayoutInflater
@@ -25,25 +40,29 @@ class PackageListAdapater(private val listener: PackageItemClickListener) : Recy
     }
 
     override fun getItemCount(): Int {
-        return packages.size
+        return packages.currentList.size
     }
 
     override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
-        val pckg = packages[position]
+        val pckg = packages.currentList[position]
 
         holder.nameTextView.text = pckg.name
     }
 
-    fun addPackage(pckg: Packages) {
-        packages.add(pckg)
-        notifyItemInserted(packages.size - 1)
-    }
 
-    fun update(pckgs: List<Packages>) {
-        packages.clear()
-        packages.addAll(pckgs)
-        notifyDataSetChanged()
-    }
+//    fun addPackage(pckg: Packages) {
+//        packages.add(pckg)
+//        notifyItemInserted(packages.size - 1)
+//    }
+//
+//
+//
+//
+//    fun update(pckgs: List<Packages>) {
+//        packages.clear()
+//        packages.addAll(pckgs)
+//        notifyDataSetChanged()
+//    }
 
     interface PackageItemClickListener{
         fun onItemChanged(item: Packages)
@@ -54,7 +73,6 @@ class PackageListAdapater(private val listener: PackageItemClickListener) : Recy
 
         init{
             nameTextView = itemView.findViewById(R.id.textView)
-
         }
     }
 }

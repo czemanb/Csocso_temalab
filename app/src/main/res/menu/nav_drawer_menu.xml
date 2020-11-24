@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item1"
-        android:title="valami1"/>
+        android:title="Home"/>
     <item
         android:id="@+id/item2"
-        android:title="valami2"/>
+        android:title="Packages"/>
     <item
         android:id="@+id/item3"
-        android:title="valami3"/>
+        android:title="Transport"/>
     <item
         android:id="@+id/item4"
-        android:title="valami4"/>
+        android:title="Vehicles"/>
+    <item
+        android:id="@+id/item5"
+        android:title="Profile"/>
+    <item
+        android:id="@+id/item6"
+        android:title="Log out"/>
 
 </menu>

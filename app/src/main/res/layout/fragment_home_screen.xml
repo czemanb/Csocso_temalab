@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+        <ImageButton
+            android:id="@+id/package_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#934F4F"
+            app:srcCompat="@drawable/package_main_screen" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Packages"
+            android:textSize="70dp"
+            android:rotation="340"
+            android:textColor="#801a03"
+            android:textAlignment="center"
+            android:gravity="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#3D4868">
+        <ImageButton
+            android:id="@+id/transport_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#3D4868"
+            android:cropToPadding="true"
+            app:srcCompat="@drawable/delivering" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Transport"
+            android:textSize="70dp"
+            android:rotation="340"
+            android:textColor="#060680"
+            android:textAlignment="center"
+            android:gravity="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginTop="2dp"
+        android:background="#3D4868">
+        <ImageButton
+            android:id="@+id/vehicle_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:backgroundTint="#3D4868"
+            android:cropToPadding="true"
+            android:scaleType="center"
+            app:srcCompat="@drawable/truck_main_sreen" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Vehicles"
+            android:rotation="340"
+            android:textSize="70dp"
+            android:textAlignment="center"
+            android:textColor="#060680"
+            android:gravity="center" />
+    </FrameLayout>
+
+</LinearLayout>
