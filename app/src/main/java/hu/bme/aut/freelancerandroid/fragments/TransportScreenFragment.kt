@@ -22,11 +22,13 @@ import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
+import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
 
 class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , TransportListAdapater.TransportItemClickListener {
     private lateinit var recyclerView: RecyclerView
     lateinit var transferViewModel: TransferViewModel
+    private lateinit var navConroller: NavController
 
     val TAG = "TransferScreenFragment"
 
@@ -35,7 +37,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
     }
 
     override fun onItemClicked(item: Transfer, position: Int) {
-
+        navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment)
     }
 
     private fun initRecyclerView(){
@@ -62,6 +64,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
                 AddTransportDialogFragment.TAG
             )
         }
+        navConroller = Navigation.findNavController(view)
         initRecyclerView()
         transferViewModel = (activity as ApplicationActivity).transferViewModel
         transferViewModel.transfers.observe(viewLifecycleOwner, Observer { response ->

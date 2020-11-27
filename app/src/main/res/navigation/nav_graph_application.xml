@@ -22,7 +22,11 @@
     <fragment
         android:id="@+id/transportScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment"
-        android:label="TransportScreenFragment" />
+        android:label="TransportScreenFragment" >
+        <action
+            android:id="@+id/action_transportScreenFragment_to_packagesOfTransportFragment"
+            app:destination="@id/packagesOfTransportFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.ProfileFragment"
@@ -36,4 +40,8 @@
         android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
         android:label="fragment_package_screen"
         tools:layout="@layout/fragment_package_screen" />
+    <fragment
+        android:id="@+id/packagesOfTransportFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
+        android:label="PackagesOfTransportFragment" />
 </navigation>
