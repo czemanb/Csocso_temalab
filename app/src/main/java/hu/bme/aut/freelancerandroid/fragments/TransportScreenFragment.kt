@@ -22,6 +22,7 @@ import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
+import kotlinx.android.synthetic.main.truck_row.*
 
 class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , TransportListAdapater.TransportItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -70,7 +71,8 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
             when(response) {
                 is Resource.Success -> {
                     response.data?.let { transferResponse ->
-                       adapter.transports.submitList(transferResponse)
+                       //adapter.transports.submitList(transferResponse)
+                        adapter.transports.addAll(transferResponse)
                     }
                 }
                 is Resource.Error -> {

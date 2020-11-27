@@ -7,30 +7,19 @@ import hu.bme.aut.freelancerandroid.repository.network.NetworkManager
 
 class UserRepository{
 
-    //var job: CompletableJob? = null
-
     suspend fun fetchUsers(): List<User>{
         val users: MutableList<User> = mutableListOf()
         val response = NetworkManager.freelancerApi.fetchUsers()
         if (response.code() == 200) {
             users.addAll(response.body()!!)
         }
-
         return users
     }
 
-
     suspend fun addUser(user: RegisterData) = NetworkManager.freelancerApi.addUser(user)
 
+    suspend fun deleteUser(userId: Long) = NetworkManager.freelancerApi.deleteUser(userId)
 
-
-    suspend fun deleteUser(userId: Long) {
-        NetworkManager.freelancerApi.deleteUser(userId)
-    }
-
-
-
-    
     suspend fun loginUser(loginData: LoginData) = NetworkManager.freelancerApi.loginUser(loginData)
 
 

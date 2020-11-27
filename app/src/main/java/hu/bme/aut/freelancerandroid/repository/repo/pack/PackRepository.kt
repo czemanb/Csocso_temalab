@@ -6,18 +6,14 @@ import hu.bme.aut.freelancerandroid.repository.model.Package
 
 class PackRepository {
 
-
     suspend fun fetchPackages(authHeader :String?)= NetworkManager.freelancerApi.fetchPackages(authHeader)
 
-    suspend fun fetchTransferPackages(transferId: Long) = NetworkManager.freelancerApi.fetchTransferPackages(transferId)
+    suspend fun fetchUserPackages(authHeader: String?, userId: Long) = NetworkManager.freelancerApi.fetchUserPackages(authHeader, userId)
 
+    suspend fun fetchTransferPackages(authHeader :String?, transferId: Long) = NetworkManager.freelancerApi.fetchTransferPackages(authHeader,transferId)
 
-    suspend fun addPackage( pack: Package){
-        NetworkManager.freelancerApi.addPackage(pack)
-    }
+    suspend fun addPackage(authHeader :String?, pack: Package) = NetworkManager.freelancerApi.addPackage(authHeader,pack)
 
+    suspend fun deletePackage(authHeader :String?, packageId: Long) = NetworkManager.freelancerApi.deletePackage(authHeader, packageId)
 
-    suspend fun deletePackage(packageId: Long){
-            NetworkManager.freelancerApi.deletePackage(packageId)
-    }
 }
