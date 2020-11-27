@@ -71,7 +71,8 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
             when(response) {
                 is Resource.Success -> {
                     response.data?.let { vehicleResponse ->
-                        adapter.trucks.submitList(vehicleResponse)
+                        //adapter.trucks.submitList(vehicleResponse)
+                        adapter.trucks.addAll(vehicleResponse)
                     }
                 }
                 is Resource.Error -> {

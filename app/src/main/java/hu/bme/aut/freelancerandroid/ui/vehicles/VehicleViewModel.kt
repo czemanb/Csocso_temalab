@@ -3,6 +3,7 @@ package hu.bme.aut.freelancerandroid.ui.vehicles
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import hu.bme.aut.freelancerandroid.repository.repo.vehicle.VehicleRepository
@@ -17,22 +18,25 @@ class VehicleViewModel(val vehicleRepository: VehicleRepository): ViewModel() {
 
     val vehicles: MutableLiveData<Resource<VehicleResponse>> = MutableLiveData()
 
+
     init{
         fetchVehicle()
     }
-
+    
     fun fetchVehicle()= viewModelScope.launch {
         vehicles.postValue(Resource.Loading())
         val response = vehicleRepository.fetchVehicle("Bearer " + GlobalVariable.token)
         vehicles.postValue(handleVehicleResponse(response))
     }
 
-    fun addVehicle(vehicle: Vehicle) = viewModelScope.launch {
-
+    fun addVehicle(vehicle: VehicleDto) = viewModelScope.launch {
+        val response = vehicleRepository.addVehicle("Bearer " + GlobalVariable.token, vehicle)
+        fetchVehicle()
     }
 
     fun deleteVehicle(vehicleId: Long) = viewModelScope.launch {
-
+        vehicleRepository.deleteVehicle("Bearer " + GlobalVariable.token, vehicleId)
+        fetchVehicle()
     }
 
     private fun handleVehicleResponse(response: Response<VehicleResponse>) : Resource<VehicleResponse>? {

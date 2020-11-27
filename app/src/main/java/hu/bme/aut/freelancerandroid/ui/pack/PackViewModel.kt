@@ -18,21 +18,26 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
 
 
     init {
-        fetchPackages()
+        //fetchPackages()
+        fetchUserPackages()
     }
-
 
 
      fun fetchPackages() = viewModelScope.launch {
          packs.postValue(Resource.Loading())
          val response = packRepository.fetchPackages("Bearer " + GlobalVariable.token)
          packs.postValue(handlePackResponse(response))
-
      }
+
+    fun fetchUserPackages() = viewModelScope.launch {
+        packs.postValue(Resource.Loading())
+        val response = packRepository.fetchUserPackages("Bearer " + GlobalVariable.token,1) //Todo ActiveUserId
+        packs.postValue(handlePackResponse(response))
+    }
 
 
      fun addPackage(pack: Package) = viewModelScope.launch {
-
+         val response = packRepository.addPackage("Bearer " + GlobalVariable.token, pack)
      }
 
     fun changeStatus(id: Long, status: String)= viewModelScope.launch {
@@ -47,6 +52,8 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
     fun deletePackage(packageId: Long) = viewModelScope.launch {
 
     }
+
+
 
     private fun handlePackResponse(response: Response<PackResponse>) : Resource<PackResponse>? {
         if(response.isSuccessful) {

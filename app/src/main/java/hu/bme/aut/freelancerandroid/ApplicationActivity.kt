@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
+import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import hu.bme.aut.freelancerandroid.repository.repo.pack.PackRepository
@@ -70,11 +72,9 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             return true
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onPackageCreated(newItem: Packages) {
- //       thread {
- //           packViewModel.addPackage(newItem)
-  //      }
+    
+    override fun onPackageCreated(newItem: PackDto?) {
+        //thread {
          //   runOnUiThread {
                // PackageScreenFragment.adapter.addPackage(newItem) /Todo
 //                var noPckg: ConstraintLayout
@@ -105,21 +105,22 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 //        }
     }
 
-    override fun onTruckCreated(newItem: Vehicle) {
+    override fun onTruckCreated(newItem: VehicleDto) {
 //        thread {
 //            runOnUiThread {
-//                VehicleScreenFragment.adapter.addTruck(newItem)
-                var noVehicle: ConstraintLayout
-                noVehicle = findViewById(R.id.clNoVehicle)
-                if(VehicleScreenFragment.adapter.getItemCount() != 0)
-                    noVehicle.isGone = true
-                else{
-                    noVehicle.isGone = false
-                    noVehicle.isVisible = true
-                }
-            }
+                vehicleViewModel.addVehicle(newItem)
+//                VehicleScreenFragment.adapter.addTruck()
+//                var noVehicle: ConstraintLayout
+//                noVehicle = findViewById(R.id.clNoVehicle)
+//                if(VehicleScreenFragment.adapter.getItemCount() != 0)
+//                    noVehicle.isGone = true
+//                else{
+//                    noVehicle.isGone = false
+//                    noVehicle.isVisible = true
+//                }
+//            }
 //        }
-//    }
+    }
 
 
 }

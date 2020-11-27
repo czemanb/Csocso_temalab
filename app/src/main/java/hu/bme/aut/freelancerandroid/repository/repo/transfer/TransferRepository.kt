@@ -9,13 +9,13 @@ class TransferRepository {
     suspend fun fetchTransfer(authHeader:String?) = NetworkManager.freelancerApi.fetchTransfer(authHeader)
 
 
-    suspend fun addTransfer(transfer: Transfer){
-        NetworkManager.freelancerApi.addTransfer(transfer)
-    }
+    suspend fun addTransfer(authHeader :String?, transfer: Transfer) = NetworkManager.freelancerApi.addTransfer(authHeader, transfer)
 
-    suspend fun deleteTransfer(transferId: Long){
-        NetworkManager.freelancerApi.deleteTransfer(transferId)
-    }
+
+    suspend fun deleteTransfer(authHeader :String?, transferId: Long) = NetworkManager.freelancerApi.deleteTransfer(authHeader, transferId)
+
+    suspend fun fetchUserTransfer(authHeader: String?, userId: Long) = NetworkManager.freelancerApi.fetchUserTransfer(authHeader, userId)
+
 
 
     suspend fun getVehicles( vehicleId: Long) = NetworkManager.freelancerApi.getVehicles(vehicleId)

@@ -9,24 +9,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.TruckListAdapter.TruckViewHolder
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 
 class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickListener) : RecyclerView.Adapter<TruckViewHolder>(){
 
 
-    private val differCallback = object : DiffUtil.ItemCallback<Vehicle>() {
-        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    val trucks = AsyncListDiffer(this, differCallback)
-
+//    private val differCallback = object : DiffUtil.ItemCallback<Vehicle>() {
+//        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+//            return oldItem.id == newItem.id
+//        }
+//
+//        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+//            return oldItem == newItem
+//        }
+//    }
+//
+//    val trucks = AsyncListDiffer(this, differCallback)
+      val trucks : MutableList<Vehicle> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TruckViewHolder {
         val itemView = LayoutInflater
@@ -37,25 +38,29 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
     }
 
     override fun getItemCount(): Int {
-        return trucks.currentList.size
+        //return trucks.currentList.size
+        return trucks.size
     }
 
     override fun onBindViewHolder(holder: TruckViewHolder, position: Int) {
-        val truck = trucks.currentList[position]
+        //val truck = trucks.currentList[position]
+        val truck = trucks[position]
 
         holder.truckNameTextView.text = truck.name.toString()
     }
 
-//    fun addTruck(truck: Vehicle) {
-//        trucks.add(truck)
-//        notifyItemInserted(trucks.size - 1)
-//    }
+
 //
 //    fun update(vehicles: List<Vehicle>) {
 //        trucks.clear()
 //        trucks.addAll(vehicles)
 //        notifyDataSetChanged()
 //    }
+
+    fun delete(item: Vehicle){
+
+    }
+
 
     interface TruckItemClickListener{
         fun onItemChanged(item: Vehicle)

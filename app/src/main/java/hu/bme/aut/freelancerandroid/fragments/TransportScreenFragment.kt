@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
 import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
+import kotlinx.android.synthetic.main.truck_row.*
 
 class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     private lateinit var recyclerView: RecyclerView
@@ -72,7 +73,8 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
             when(response) {
                 is Resource.Success -> {
                     response.data?.let { transferResponse ->
-                       adapter.transports.submitList(transferResponse)
+                       //adapter.transports.submitList(transferResponse)
+                        adapter.transports.addAll(transferResponse)
                     }
                 }
                 is Resource.Error -> {
