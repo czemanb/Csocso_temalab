@@ -13,6 +13,7 @@ import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.User
+import org.threeten.bp.LocalTime
 import java.util.*
 
 class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
@@ -64,7 +65,9 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
 //        val selectedDate = Date(year, month, day)
 //
 //        return Transfer(date = selectedDate)
-        return Transfer(null,null,null,null,null,null)
+        val time = LocalTime.of(10,10)
+        return Transfer(null,null,null,null,null,null, 0.1, 0.1, 0.1,0.1, time,"")
+//        return Transfer(null,null,null,null,null,null)
     }
 
     companion object{

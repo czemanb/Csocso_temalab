@@ -1,10 +1,13 @@
 package hu.bme.aut.freelancerandroid
 
+import android.content.Context
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -91,7 +94,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
                 }
                 R.id.item5 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, ProfileFragment())
+                        .replace(R.id.root_container, RandomFragment())
                         .commitAllowingStateLoss()
                     setTitle("Profile")
                 }
@@ -157,6 +160,11 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             }
 //        }
 //    }
+
+    fun locationEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
 
 
 }
