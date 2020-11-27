@@ -8,6 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
@@ -45,10 +47,6 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.root_container, HomeFragment())
-            .commitAllowingStateLoss()
-
         setTitle("Home")
 
         val packsRepository = PackRepository()
@@ -63,44 +61,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         val vehicleViewModelProviderFactory = VehicleViewModelProviderFactory(vehicleRepository)
         vehicleViewModel = ViewModelProvider(this, vehicleViewModelProviderFactory).get(VehicleViewModel::class.java)
 
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.item1 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, HomeFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Home")
-                }
-                R.id.item2 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, PackageScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Packages")
-                }
-                R.id.item3 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, TransportScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Transports")
-                }
-                R.id.item4 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, VehicleScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Vehicles")
-                }
-                R.id.item5 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, ProfileFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Profile")
-                }
-                R.id.item6 -> {
-                    //log out
-                }
-            }
-            true
-        }
+        navView.setupWithNavController(nav_host_fragment_application.findNavController())
     }
 
 

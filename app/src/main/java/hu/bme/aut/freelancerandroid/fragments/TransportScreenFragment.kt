@@ -22,6 +22,7 @@ import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
+import kotlin.concurrent.thread
 
 class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , TransportListAdapater.TransportItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -33,11 +34,8 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
         public lateinit var adapter: TransportListAdapater
     }
 
-    override fun onItemChanged(item: Transfer) {
-        /* thread {
-             database.shoppingItemDao().update(item)
-             Log.d("LoginActivity", "ShoppingItem update was successful")
-         }*/
+    override fun onItemClicked(item: Transfer, position: Int) {
+
     }
 
     private fun initRecyclerView(){

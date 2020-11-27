@@ -45,9 +45,7 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
     }
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
-        val transport = transports.currentList[position]
-
-        holder.dateTextView.text = transport.date.toString()
+        holder.initialize(transports.currentList.get(position), listener)
     }
 
 //    fun addTransport(transport: Transfer) {
@@ -62,7 +60,7 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 //    }
 
     interface TransportItemClickListener{
-        fun onItemChanged(item: Transfer)
+        fun onItemClicked(item: Transfer, position: Int)
     }
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
@@ -70,7 +68,13 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
         init{
             dateTextView = itemView.findViewById(R.id.tvDate)
+        }
 
+        fun initialize(transport: Transfer, action: TransportItemClickListener){
+            dateTextView.text = transport.date.toString()
+            itemView.setOnClickListener(){
+                action.onItemClicked(transport, adapterPosition)
+            }
         }
     }
 }

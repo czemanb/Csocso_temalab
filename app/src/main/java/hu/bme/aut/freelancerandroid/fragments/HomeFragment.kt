@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.toggle
 import kotlinx.android.synthetic.main.activity_application.*
@@ -16,28 +17,30 @@ import kotlinx.android.synthetic.main.nav_view.*
 
 class HomeFragment  : Fragment(R.layout.fragment_home_screen){
 
+    private lateinit var navConroller: NavController
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        navConroller = Navigation.findNavController(view)
+
         package_button.setOnClickListener {
-            requireActivity().setTitle("Packages")
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.root_container, PackageScreenFragment())
-                .commitAllowingStateLoss()
+            navConroller.navigate(R.id.action_homeFragment_to_packageScreenFragment)
         }
 
-        transport_button.setOnClickListener {
+        /*transport_button.setOnClickListener {
             requireActivity().setTitle("Transports")
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.root_container, TransportScreenFragment())
                 .commitAllowingStateLoss()
+        }*/
+
+        transport_button.setOnClickListener {
+            navConroller.navigate(R.id.action_homeFragment_to_transportScreenFragment)
         }
 
         vehicle_button.setOnClickListener {
-            requireActivity().setTitle("Vehicles")
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.root_container, VehicleScreenFragment())
-                .commitAllowingStateLoss()
+            navConroller.navigate(R.id.action_homeFragment_to_vehicleScreenFragment)
         }
     }
 }
