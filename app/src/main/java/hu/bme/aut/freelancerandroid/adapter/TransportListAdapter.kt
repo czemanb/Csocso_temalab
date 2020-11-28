@@ -1,6 +1,7 @@
 package hu.bme.aut.freelancerandroid.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
-class TransportListAdapater(private val listener: TransportItemClickListener) : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
+class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Transfer>() {
@@ -31,6 +32,8 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     val transports = AsyncListDiffer(this, differCallback)
 
+    //val transports: MutableList<Transfer> = mutableListOf<Transfer>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportViewHolder {
         val itemView = LayoutInflater
@@ -42,12 +45,26 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     override fun getItemCount(): Int {
         return transports.currentList.size
+        //return transports.size
     }
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
         val transport = transports.currentList[position]
+        //val transport = transports[position]
 
         holder.dateTextView.text = transport.date.toString()
+
+        holder.itemView.apply {
+            setOnClickListener {
+                onItemClickListener?.let { it(transport) }
+            }
+        }
+    }
+
+    private var onItemClickListener: ((Transfer) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Transfer) -> Unit){
+        onItemClickListener = listener
     }
 
 //    fun addTransport(transport: Transfer) {
@@ -61,16 +78,11 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 //        notifyDataSetChanged()
 //    }
 
-    interface TransportItemClickListener{
-        fun onItemChanged(item: Transfer)
-    }
-
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView
 
         init{
             dateTextView = itemView.findViewById(R.id.tvDate)
-
         }
     }
 }

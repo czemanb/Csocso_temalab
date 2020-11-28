@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_application"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_packageScreenFragment"
+            app:destination="@id/packageScreenFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transportScreenFragment"
+            app:destination="@id/transportScreenFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_vehicleScreenFragment"
+            app:destination="@id/vehicleScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transportScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment"
+        android:label="TransportScreenFragment" >
+        <action
+            android:id="@+id/action_transportScreenFragment_to_packagesOfTransportFragment"
+            app:destination="@id/packagesOfTransportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/vehicleScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.VehicleScreenFragment"
+        android:label="VehicleScreenFragment" />
+    <fragment
+        android:id="@+id/packageScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
+        android:label="fragment_package_screen"
+        tools:layout="@layout/fragment_package_screen" />
+    <fragment
+        android:id="@+id/packagesOfTransportFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
+        android:label="PackagesOfTransportFragment" >
+        <argument
+            android:name="asd"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
+    </fragment>
+</navigation>

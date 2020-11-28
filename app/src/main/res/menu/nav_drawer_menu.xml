@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item1"
+        android:id="@+id/homeFragment"
         android:title="Home"/>
     <item
-        android:id="@+id/item2"
+        android:id="@+id/packageScreenFragment"
         android:title="Packages"/>
     <item
-        android:id="@+id/item3"
+        android:id="@+id/transportScreenFragment"
         android:title="Transport"/>
     <item
-        android:id="@+id/item4"
+        android:id="@+id/vehicleScreenFragment"
         android:title="Vehicles"/>
     <item
-        android:id="@+id/item5"
+        android:id="@+id/profileFragment"
         android:title="Profile"/>
     <item
         android:id="@+id/item6"

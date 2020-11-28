@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
@@ -22,27 +23,31 @@ import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
+import kotlinx.android.synthetic.main.nav_view.*
+import kotlin.concurrent.thread
+import kotlinx.android.synthetic.main.truck_row.*
 
-class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , TransportListAdapater.TransportItemClickListener {
+class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     private lateinit var recyclerView: RecyclerView
     lateinit var transferViewModel: TransferViewModel
+    private lateinit var navConroller: NavController
 
     val TAG = "TransferScreenFragment"
 
     companion object{
-        public lateinit var adapter: TransportListAdapater
+        lateinit var adapter: TransportListAdapater
     }
 
-    override fun onItemChanged(item: Transfer) {
-        /* thread {
-             database.shoppingItemDao().update(item)
-             Log.d("LoginActivity", "ShoppingItem update was successful")
-         }*/
-    }
+//    override fun onItemChanged(item: Transfer) {
+//        /* thread {
+//             database.shoppingItemDao().update(item)
+//             Log.d("LoginActivity", "ShoppingItem update was successful")
+//         }*/
+//    }
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = TransportListAdapater(this)
+        adapter = TransportListAdapater()
         //loadItemsInBackground()
         recyclerView.adapter = adapter
     }
@@ -58,12 +63,17 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Transports")
+
         btnDialog.setOnClickListener{
             AddTransportDialogFragment().show(
                 requireActivity().supportFragmentManager,
                 AddTransportDialogFragment.TAG
             )
         }
+
+        navConroller = Navigation.findNavController(view)
         initRecyclerView()
         transferViewModel = (activity as ApplicationActivity).transferViewModel
         transferViewModel.transfers.observe(viewLifecycleOwner, Observer { response ->
@@ -71,6 +81,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
                 is Resource.Success -> {
                     response.data?.let { transferResponse ->
                        adapter.transports.submitList(transferResponse)
+                        //adapter.transports.addAll(transferResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -85,5 +96,13 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
             }
         })
 
+        adapter.setOnItemClickListener {
+            /*val bundle = Bundle().apply{
+                putSerializable("asd", it)
+            }
+            navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment, bundle)*/
+            val action = TransportScreenFragmentDirections.actionTransportScreenFragmentToPackagesOfTransportFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

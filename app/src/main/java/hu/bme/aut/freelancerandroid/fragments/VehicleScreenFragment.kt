@@ -56,6 +56,9 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Vehicles")
+
         btnDialogVehicles.setOnClickListener{
             AddTruckDialogFragment().show(
                 requireActivity().supportFragmentManager,
@@ -69,6 +72,7 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
                 is Resource.Success -> {
                     response.data?.let { vehicleResponse ->
                         adapter.trucks.submitList(vehicleResponse)
+                        //adapter.trucks.addAll(vehicleResponse)
                     }
                 }
                 is Resource.Error -> {

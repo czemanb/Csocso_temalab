@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import kotlinx.android.synthetic.main.fragment_vehicle_screen.*
@@ -21,7 +22,7 @@ import java.util.*
 class AddTruckDialogFragment: androidx.fragment.app.DialogFragment() {
 
     interface NewTruckItemDialogListener{
-        fun onTruckCreated(newItem: Vehicle)
+        fun onTruckCreated(newItem: VehicleDto)
     }
 
     private lateinit var truckName: EditText
@@ -65,19 +66,16 @@ class AddTruckDialogFragment: androidx.fragment.app.DialogFragment() {
         sizeY = contentView.findViewById(R.id.etY)
         sizeZ = contentView.findViewById(R.id.etZ)
         maxWeight = contentView.findViewById(R.id.etMaxWeight)
-
         return contentView
     }
 
-    private fun getTruck() = Vehicle(
-        id = 1, //Todo
+    private fun getTruck() = VehicleDto(
         name = truckName.text.toString(),
         x = sizeX.text.toString().toInt(),
         y = sizeY.text.toString().toInt(),
         z = sizeZ.text.toString().toInt(),
         weightLimit = maxWeight.text.toString().toDouble(),
-        owner = null,//TOdo
-        cc = null
+        ownerId = 1 //Todo add ActiveUserId
     )
 
     companion object{

@@ -38,7 +38,7 @@ class PackageScreenFragment : Fragment(R.layout.fragment_package_screen) , Packa
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = PackageListAdapater(this)
+        adapter = PackageListAdapater(R.layout.package_row)
         //loadItemsInBackground()
         //recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
@@ -82,6 +82,8 @@ class PackageScreenFragment : Fragment(R.layout.fragment_package_screen) , Packa
                 AddPackageDialogFragment.TAG
             )
         }
+
+        requireActivity().setTitle("Packages")
 
     }
 }

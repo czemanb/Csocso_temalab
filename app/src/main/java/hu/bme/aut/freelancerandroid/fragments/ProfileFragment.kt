@@ -17,6 +17,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), View.OnClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().setTitle("Profile")
+
         tvName.text = user.name
         tvEmail.text = user.email
         tvPhoneNumber.text = user.phonenumber

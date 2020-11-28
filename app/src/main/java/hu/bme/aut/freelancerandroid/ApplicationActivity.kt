@@ -8,8 +8,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
+import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import hu.bme.aut.freelancerandroid.repository.repo.pack.PackRepository
@@ -45,10 +49,6 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.root_container, HomeFragment())
-            .commitAllowingStateLoss()
-
         setTitle("Home")
 
         val packsRepository = PackRepository()
@@ -63,44 +63,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         val vehicleViewModelProviderFactory = VehicleViewModelProviderFactory(vehicleRepository)
         vehicleViewModel = ViewModelProvider(this, vehicleViewModelProviderFactory).get(VehicleViewModel::class.java)
 
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.item1 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, HomeFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Home")
-                }
-                R.id.item2 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, PackageScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Packages")
-                }
-                R.id.item3 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, TransportScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Transports")
-                }
-                R.id.item4 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, VehicleScreenFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Vehicles")
-                }
-                R.id.item5 -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, ProfileFragment())
-                        .commitAllowingStateLoss()
-                    setTitle("Profile")
-                }
-                R.id.item6 -> {
-                    //log out
-                }
-            }
-            true
-        }
+        navView.setupWithNavController(nav_host_fragment_application.findNavController())
     }
 
 
@@ -109,10 +72,11 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             return true
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onPackageCreated(newItem: Packages) {
+    
+    override fun onPackageCreated(newItem: PackDto?) {
         //thread {
          //   runOnUiThread {
+                packViewModel.addPackage(newItem!!)
                // PackageScreenFragment.adapter.addPackage(newItem) /Todo
 //                var noPckg: ConstraintLayout
 //               noPckg = findViewById(R.id.noPackage)
@@ -142,21 +106,22 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 //        }
     }
 
-    override fun onTruckCreated(newItem: Vehicle) {
+    override fun onTruckCreated(newItem: VehicleDto) {
 //        thread {
 //            runOnUiThread {
-//                VehicleScreenFragment.adapter.addTruck(newItem)
-                var noVehicle: ConstraintLayout
-                noVehicle = findViewById(R.id.clNoVehicle)
-                if(VehicleScreenFragment.adapter.getItemCount() != 0)
-                    noVehicle.isGone = true
-                else{
-                    noVehicle.isGone = false
-                    noVehicle.isVisible = true
-                }
-            }
+                vehicleViewModel.addVehicle(newItem)
+//                VehicleScreenFragment.adapter.addTruck()
+//                var noVehicle: ConstraintLayout
+//                noVehicle = findViewById(R.id.clNoVehicle)
+//                if(VehicleScreenFragment.adapter.getItemCount() != 0)
+//                    noVehicle.isGone = true
+//                else{
+//                    noVehicle.isGone = false
+//                    noVehicle.isVisible = true
+//                }
+//            }
 //        }
-//    }
+    }
 
 
 }
