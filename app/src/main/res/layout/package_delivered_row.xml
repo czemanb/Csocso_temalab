@@ -24,12 +24,22 @@
         android:layout_height="match_parent"/>
 
     <ImageView
-        android:id="@+id/arrowUpDelivered"
+        android:id="@+id/arrowUp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:layout_gravity="right"
         android:src="@drawable/arrow_up"/>
+
+    <ImageView
+        android:id="@+id/arrowDown"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="right"
+        android:src="@drawable/arrow_down"/>
 
 </LinearLayout>

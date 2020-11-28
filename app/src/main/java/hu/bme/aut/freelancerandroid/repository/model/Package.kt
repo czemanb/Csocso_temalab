@@ -21,7 +21,7 @@ val sender: Sender,
 @SerializedName("size")
 val size: String,
 @SerializedName("status")
-val status: String,
+var status: String,
 @SerializedName("toLat")
 val toLat: Double,
 @SerializedName("toLong")
