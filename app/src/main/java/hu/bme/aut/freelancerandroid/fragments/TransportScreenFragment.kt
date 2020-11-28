@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
@@ -54,6 +55,9 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Transports")
+
         btnDialog.setOnClickListener{
             AddTransportDialogFragment().show(
                 requireActivity().supportFragmentManager,
@@ -84,11 +88,12 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
         })
 
         adapter.setOnItemClickListener {
-            Log.d("vvvvvv", "vjhbk")
-            val bundle = Bundle().apply{
-                putSerializable("tranpsort", it)
+            /*val bundle = Bundle().apply{
+                putSerializable("asd", it)
             }
-            navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment, bundle)
+            navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment, bundle)*/
+            val action = TransportScreenFragmentDirections.actionTransportScreenFragmentToPackagesOfTransportFragment(it)
+            findNavController().navigate(action)
         }
     }
 }

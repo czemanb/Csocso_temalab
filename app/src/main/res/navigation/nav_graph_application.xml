@@ -26,9 +26,6 @@
         <action
             android:id="@+id/action_transportScreenFragment_to_packagesOfTransportFragment"
             app:destination="@id/packagesOfTransportFragment" />
-        <argument
-            android:name="transfer"
-            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -46,5 +43,9 @@
     <fragment
         android:id="@+id/packagesOfTransportFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
-        android:label="PackagesOfTransportFragment" />
+        android:label="PackagesOfTransportFragment" >
+        <argument
+            android:name="asd"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
+    </fragment>
 </navigation>

@@ -56,6 +56,9 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Vehicles")
+
         btnDialogVehicles.setOnClickListener{
             AddTruckDialogFragment().show(
                 requireActivity().supportFragmentManager,

@@ -72,7 +72,9 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
     }
 
     override fun onPackageCreated(newItem: Packages) {
-        //thread {
+ //       thread {
+ //           packViewModel.addPackage(newItem)
+  //      }
          //   runOnUiThread {
                // PackageScreenFragment.adapter.addPackage(newItem) /Todo
 //                var noPckg: ConstraintLayout

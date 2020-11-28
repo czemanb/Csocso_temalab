@@ -54,7 +54,9 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
     private fun getContentView(): View {
         val contentView =
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_package, null)
+
         nameEditText = contentView.findViewById(R.id.etPackageName)
+
         citySpinner = contentView.findViewById(R.id.spinnerCity)
         citySpinner.setAdapter(
             ArrayAdapter(

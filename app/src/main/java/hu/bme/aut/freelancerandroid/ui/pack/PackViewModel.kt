@@ -35,6 +35,14 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
 
      }
 
+    fun changeStatus(id: Long, status: String)= viewModelScope.launch {
+
+    }
+
+    fun getPackagesById(id: Long)= viewModelScope.launch {
+
+    }
+
 
     fun deletePackage(packageId: Long) = viewModelScope.launch {
 

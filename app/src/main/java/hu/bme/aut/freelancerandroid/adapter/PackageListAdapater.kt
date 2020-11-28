@@ -13,10 +13,11 @@ import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.proba.pack1Item
 import hu.bme.aut.freelancerandroid.repository.model.Package
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
-class PackageListAdapater() : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
+class PackageListAdapater(var rowLayout: Int) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Package>() {
@@ -34,7 +35,7 @@ class PackageListAdapater() : RecyclerView.Adapter<PackageListAdapater.PackageVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.package_row, parent, false)
+            .inflate(rowLayout, parent, false)
 
         return PackageViewHolder(itemView)
     }
@@ -47,6 +48,18 @@ class PackageListAdapater() : RecyclerView.Adapter<PackageListAdapater.PackageVi
         val pckg = packages.currentList[position]
 
         holder.nameTextView.text = pckg.name
+
+        holder.itemView.apply {
+            setOnClickListener {
+                onItemClickListener?.let { it(pckg) }
+            }
+        }
+    }
+
+    private var onItemClickListener: ((Package) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Package) -> Unit){
+        onItemClickListener = listener
     }
 
 
