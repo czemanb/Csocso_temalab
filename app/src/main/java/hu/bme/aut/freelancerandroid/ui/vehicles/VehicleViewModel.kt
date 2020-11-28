@@ -34,6 +34,12 @@ class VehicleViewModel(val vehicleRepository: VehicleRepository): ViewModel() {
         fetchVehicle()
     }
 
+    fun fetchUserVehicle(vehicleId: Long) = viewModelScope.launch {
+        vehicles.postValue(Resource.Loading())
+        val response = vehicleRepository.fetchUserVehicle("Bearer " + GlobalVariable.token, vehicleId)
+        vehicles.postValue(handleVehicleResponse(response))
+    }
+
     fun deleteVehicle(vehicleId: Long) = viewModelScope.launch {
         vehicleRepository.deleteVehicle("Bearer " + GlobalVariable.token, vehicleId)
         fetchVehicle()

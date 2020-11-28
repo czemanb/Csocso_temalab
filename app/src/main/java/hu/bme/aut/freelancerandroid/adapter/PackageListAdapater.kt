@@ -42,6 +42,7 @@ class PackageListAdapater(var rowLayout: Int) : RecyclerView.Adapter<PackageList
 
     override fun getItemCount(): Int {
         return packages.currentList.size
+
     }
 
     override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
@@ -76,6 +77,8 @@ class PackageListAdapater(var rowLayout: Int) : RecyclerView.Adapter<PackageList
 //        packages.addAll(pckgs)
 //        notifyDataSetChanged()
 //    }
+
+
 
     interface PackageItemClickListener{
         fun onItemChanged(item: Packages)

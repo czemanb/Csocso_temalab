@@ -12,9 +12,10 @@ import android.view.View
 import android.widget.*
 import com.google.android.gms.maps.model.LatLng
 import hu.bme.aut.freelancerandroid.R
-import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
 import java.io.IOException
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
@@ -26,6 +27,9 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
     private lateinit var nameEditText: EditText
     private lateinit var fromAddressEditText: EditText
     private lateinit var toAddressEditText: EditText
+    private lateinit var weightEditText: EditText
+    private lateinit var valueEditText: EditText
+    private lateinit var datePicker: DatePicker
     private lateinit var citySpinner: Spinner
     private lateinit var packageSizeSpinner: Spinner
     private lateinit var listener: NewPackageItemDialogListener
@@ -65,8 +69,11 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_package, null)
 
         nameEditText = contentView.findViewById(R.id.etPackageName)
+        weightEditText = contentView.findViewById(R.id.etPackageWeight)
+        valueEditText = contentView.findViewById(R.id.etPackageValue)
         fromAddressEditText = contentView.findViewById(R.id.etFromAddress)
         toAddressEditText = contentView.findViewById(R.id.etToAddress)
+        datePicker = contentView.findViewById(R.id.dpPackageDate)
         citySpinner = contentView.findViewById(R.id.spinnerCity)
         citySpinner.setAdapter(
             ArrayAdapter(
@@ -107,31 +114,50 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         return p1
     }
 
-    private fun getDateFrom(picker: DatePicker): String? { //Todo
+    private fun getDateFrom(picker: DatePicker): String { //Todo
         return String.format(
-            Locale.getDefault(), "%04d.%02d.%02d.",
+            Locale.getDefault(), "%04d-%02d-%02d",
             picker.year, picker.month + 1, picker.dayOfMonth
         )
     }
 
-    private fun getPackage() : PackDto? {
-        val toAddress = getLocationFromAddress("New York")
-        val fromAddress = getLocationFromAddress("New York")
-        if (toAddress ==null) {
-           val toLong =toAddress!!.latitude
-        }
+        private fun getPackage() : PackDto? {
+        val toAddress = getLocationFromAddress(toAddressEditText.text.toString())
+        val fromAddress = getLocationFromAddress(fromAddressEditText.text.toString())
+        val toLong : Double
+        val fromLong: Double
+        val toLat : Double
+        val fromLat: Double
+//        if (toAddress !=null) { //Todo
+//           toLat =toAddress.latitude
+//            toLong = toAddress.longitude
+//        }else {
+//            return null
+//        }
+//
+//        if (fromAddress !=null) {
+//            fromLat =fromAddress.latitude
+//            fromLong = fromAddress.longitude
+//        }else{
+//            return null
+//        }
+
         return PackDto(
             name = nameEditText.text.toString(),
-            size = "",
-            weight = 0.0,
+            size = "S",
+            weight = weightEditText.text.toString().toDouble(),
+//            fromLat = fromLat,
+//            toLat = toLat,
+//            fromLong = fromLong,
+//           toLong = toLong,
             fromLat = 0.0,
             toLat = 0.0,
             fromLong = 0.0,
             toLong = 0.0,
-            senderId = 1,
-            dateLimit = "2",
+            senderId = 1,//todo
+            dateLimit = getDateFrom(datePicker),
             townId = 1,
-            value = 1000
+            value = valueEditText.text.toString().toInt()
         )
     }
 

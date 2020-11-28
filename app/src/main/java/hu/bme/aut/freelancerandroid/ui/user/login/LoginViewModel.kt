@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import hu.bme.aut.freelancerandroid.fragments.ProfileFragment.Companion.TAG
+import hu.bme.aut.freelancerandroid.repository.model.Carrier
 import hu.bme.aut.freelancerandroid.repository.model.LoginData
 import hu.bme.aut.freelancerandroid.repository.model.RegisterData
 import hu.bme.aut.freelancerandroid.repository.model.User
@@ -24,7 +25,7 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
 
     lateinit var email: String
     lateinit var password: String
-    val activeUser: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
+    val activeUser: MutableLiveData<Resource<Carrier>> = MutableLiveData()
 
 
 
@@ -49,6 +50,7 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
             val response = userRepository.loginUser(LoginData(email, password))
             if (response.code() == 200) {
                 t = response.body()!!.token
+               // GlobalVariable.activeUser =response.body()!!.currentUserId
                Log.e(TAG, "An error occured: $response.body()!!.token")
 
             }
@@ -57,6 +59,9 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
             }
         }
         return t
+    }
+
+    fun getUser(userId: Long) = viewModelScope.launch {
 
     }
 
@@ -77,8 +82,4 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
         }
         return Resource.Error(response.message())
     }
-
-
-
-
 }
