@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_transport_screen.*
 import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
 
-class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , TransportListAdapater.TransportItemClickListener {
+class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     private lateinit var recyclerView: RecyclerView
     lateinit var transferViewModel: TransferViewModel
     private lateinit var navConroller: NavController
@@ -36,13 +36,9 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
         public lateinit var adapter: TransportListAdapater
     }
 
-    override fun onItemClicked(item: Transfer, position: Int) {
-        navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment)
-    }
-
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = TransportListAdapater(this)
+        adapter = TransportListAdapater()
         //loadItemsInBackground()
         recyclerView.adapter = adapter
     }
@@ -64,6 +60,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
                 AddTransportDialogFragment.TAG
             )
         }
+
         navConroller = Navigation.findNavController(view)
         initRecyclerView()
         transferViewModel = (activity as ApplicationActivity).transferViewModel
@@ -86,5 +83,12 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
             }
         })
 
+        adapter.setOnItemClickListener {
+            Log.d("vvvvvv", "vjhbk")
+            val bundle = Bundle().apply{
+                putSerializable("tranpsort", it)
+            }
+            navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment, bundle)
+        }
     }
 }

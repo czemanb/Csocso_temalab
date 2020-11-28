@@ -38,7 +38,7 @@ class PackageScreenFragment : Fragment(R.layout.fragment_package_screen) , Packa
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = PackageListAdapater(this)
+        adapter = PackageListAdapater()
         //loadItemsInBackground()
         //recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter

@@ -16,7 +16,7 @@ import hu.bme.aut.freelancerandroid.repository.model.Package
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
-class PackageListAdapater(private val listener: PackageItemClickListener) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
+class PackageListAdapater() : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Package>() {

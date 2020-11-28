@@ -1,6 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 data class Transfer(
@@ -16,5 +17,4 @@ val id: Long?,
 val town: Town?,
 @SerializedName("vehicle")
 val vehicle: Vehicle?
-
-)
+) : Serializable
