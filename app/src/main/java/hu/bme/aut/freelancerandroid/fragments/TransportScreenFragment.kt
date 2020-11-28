@@ -31,7 +31,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
     val TAG = "TransferScreenFragment"
 
     companion object{
-        public lateinit var adapter: TransportListAdapater
+        lateinit var adapter: TransportListAdapater
     }
 
     override fun onItemChanged(item: Transfer) {
@@ -71,8 +71,8 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen)  , 
             when(response) {
                 is Resource.Success -> {
                     response.data?.let { transferResponse ->
-                       //adapter.transports.submitList(transferResponse)
-                        adapter.transports.addAll(transferResponse)
+                       adapter.transports.submitList(transferResponse)
+                        //adapter.transports.addAll(transferResponse)
                     }
                 }
                 is Resource.Error -> {

@@ -1,5 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.dto
 
+import java.util.*
+
 data class PackDto (
     val name: String,
     val size: String,

@@ -41,6 +41,7 @@ class PackageListAdapater(private val listener: PackageItemClickListener) : Recy
 
     override fun getItemCount(): Int {
         return packages.currentList.size
+
     }
 
     override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
@@ -63,6 +64,8 @@ class PackageListAdapater(private val listener: PackageItemClickListener) : Recy
 //        packages.addAll(pckgs)
 //        notifyDataSetChanged()
 //    }
+
+
 
     interface PackageItemClickListener{
         fun onItemChanged(item: Packages)

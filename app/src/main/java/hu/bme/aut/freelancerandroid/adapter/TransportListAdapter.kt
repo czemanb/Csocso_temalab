@@ -19,19 +19,19 @@ import kotlinx.android.synthetic.main.package_row.view.*
 class TransportListAdapater(private val listener: TransportItemClickListener) : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
 
 
-//    private val differCallback = object : DiffUtil.ItemCallback<Transfer>() {
-//        override fun areItemsTheSame(oldItem: Transfer, newItem: Transfer): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//
-//        override fun areContentsTheSame(oldItem: Transfer, newItem: Transfer): Boolean {
-//            return oldItem == newItem
-//        }
-//    }
-//
-//    val transports = AsyncListDiffer(this, differCallback)
+    private val differCallback = object : DiffUtil.ItemCallback<Transfer>() {
+        override fun areItemsTheSame(oldItem: Transfer, newItem: Transfer): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    val transports: MutableList<Transfer> = mutableListOf<Transfer>()
+        override fun areContentsTheSame(oldItem: Transfer, newItem: Transfer): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val transports = AsyncListDiffer(this, differCallback)
+
+    //val transports: MutableList<Transfer> = mutableListOf<Transfer>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportViewHolder {
@@ -43,13 +43,13 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
     }
 
     override fun getItemCount(): Int {
-        //return transports.currentList.size
-        return transports.size
+        return transports.currentList.size
+        //return transports.size
     }
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
-        //val transport = transports.currentList[position]
-        val transport = transports[position]
+        val transport = transports.currentList[position]
+        //val transport = transports[position]
 
         holder.dateTextView.text = transport.date.toString()
     }
@@ -74,7 +74,6 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
         init{
             dateTextView = itemView.findViewById(R.id.tvDate)
-
         }
     }
 }

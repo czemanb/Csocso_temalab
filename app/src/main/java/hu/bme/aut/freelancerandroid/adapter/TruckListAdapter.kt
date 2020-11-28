@@ -16,18 +16,18 @@ import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickListener) : RecyclerView.Adapter<TruckViewHolder>(){
 
 
-//    private val differCallback = object : DiffUtil.ItemCallback<Vehicle>() {
-//        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//
-//        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-//            return oldItem == newItem
-//        }
-//    }
-//
-//    val trucks = AsyncListDiffer(this, differCallback)
-      val trucks : MutableList<Vehicle> = mutableListOf()
+    private val differCallback = object : DiffUtil.ItemCallback<Vehicle>() {
+        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val trucks = AsyncListDiffer(this, differCallback)
+//      val trucks : MutableList<Vehicle> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TruckViewHolder {
         val itemView = LayoutInflater
@@ -38,13 +38,13 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
     }
 
     override fun getItemCount(): Int {
-        //return trucks.currentList.size
-        return trucks.size
+        return trucks.currentList.size
+        //return trucks.size
     }
 
     override fun onBindViewHolder(holder: TruckViewHolder, position: Int) {
-        //val truck = trucks.currentList[position]
-        val truck = trucks[position]
+        val truck = trucks.currentList[position]
+        //val truck = trucks[position]
 
         holder.truckNameTextView.text = truck.name.toString()
     }
@@ -71,7 +71,6 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
 
         init{
             truckNameTextView = itemView.findViewById(R.id.tvTruckName)
-
         }
     }
 }
