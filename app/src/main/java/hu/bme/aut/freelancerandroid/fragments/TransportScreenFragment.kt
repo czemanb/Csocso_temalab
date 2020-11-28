@@ -38,12 +38,12 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
         lateinit var adapter: TransportListAdapater
     }
 
-    override fun onItemChanged(item: Transfer) {
-        /* thread {
-             database.shoppingItemDao().update(item)
-             Log.d("LoginActivity", "ShoppingItem update was successful")
-         }*/
-    }
+//    override fun onItemChanged(item: Transfer) {
+//        /* thread {
+//             database.shoppingItemDao().update(item)
+//             Log.d("LoginActivity", "ShoppingItem update was successful")
+//         }*/
+//    }
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
