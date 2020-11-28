@@ -1,7 +1,6 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class Package(
 @SerializedName("createdAt")
@@ -29,13 +28,10 @@ val toLong: Double,
 @SerializedName("town")
 val town: Town,
 @SerializedName("transfer")
-val transfer: Transfer,
+val transfer: Transfer?,
 @SerializedName("value")
 val value: Int,
 @SerializedName("weight")
 val weight: Double
 
 )
-
-
-

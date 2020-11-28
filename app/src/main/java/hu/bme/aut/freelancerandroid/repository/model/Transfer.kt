@@ -4,6 +4,7 @@ import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import hu.bme.aut.freelancerandroid.repository.converter.TimeConverter
 import org.threeten.bp.LocalTime
+import java.io.Serializable
 import java.sql.Time
 import java.util.*
 
@@ -32,4 +33,4 @@ data class Transfer(
     val startTime: LocalTime?,
     @SerializedName("encodedRoute")
     val encodedRoute: String?
-)
+) : Serializable
