@@ -27,7 +27,6 @@ import hu.bme.aut.freelancerandroid.ui.transfer.TransferViewModel
 
 class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps), OnMapReadyCallback {
 
-//    lateinit var transferViewModel: TransferViewModel
     private lateinit var mapView: MapView
     private var gpsEnabled = false
     private var locationPermissionEnabled = false
@@ -40,6 +39,15 @@ class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps), OnMapReadyCa
 
         checkGpsEnabled()
         checkLocationPermissionEnabled()
+        getLastKnownLocation()
+
+        val mapViewBundle = savedInstanceState?.getBundle(MAPVIEW_BUNDLE_KEY)
+        mapView = view.findViewById(R.id.google_map)
+        mapView.onCreate(mapViewBundle)
+        mapView.getMapAsync(this)
+    }
+
+    private fun getLastKnownLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -54,19 +62,6 @@ class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps), OnMapReadyCa
                     centerCamera()
                 }
             }
-
-//        transferViewModel = requireContext().transferViewModel
-//
-//        transferViewModel.transfers.observe(viewLifecycleOwner) { response ->
-//            response.data?.let { transfers ->
-//                transfers.forEach { Log.e("transfer", it.toString()) }
-//            }
-//        }
-
-        val mapViewBundle = savedInstanceState?.getBundle(MAPVIEW_BUNDLE_KEY)
-        mapView = view.findViewById(R.id.google_map)
-        mapView.onCreate(mapViewBundle)
-        mapView.getMapAsync(this)
     }
 
     private fun checkLocationPermissionEnabled() {

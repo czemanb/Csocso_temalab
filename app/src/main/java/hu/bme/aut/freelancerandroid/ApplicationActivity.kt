@@ -94,7 +94,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
                 }
                 R.id.item5 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.root_container, RandomFragment())
+                        .replace(R.id.root_container, ProfileFragment())
                         .commitAllowingStateLoss()
                     setTitle("Profile")
                 }
