@@ -74,53 +74,15 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
     }
     
     override fun onPackageCreated(newItem: PackDto?) {
-        //thread {
-         //   runOnUiThread {
-                packViewModel.addPackage(newItem!!)
-               // PackageScreenFragment.adapter.addPackage(newItem) /Todo
-//                var noPckg: ConstraintLayout
-//               noPckg = findViewById(R.id.noPackage)
-//               if(PackageScreenFragment.adapter.getItemCount() != 0)
-//                    noPckg.isGone = true
-//                else{
-//                    noPckg.isGone = false
-//                    noPckg.isVisible = true
-//                }
-          //  }
-       // }
+        packViewModel.addPackage(newItem!!)
     }
 
     override fun onTransportCreated(newItem: Transfer) {
-//        thread {//todo
-//            runOnUiThread {
-                //TransportScreenFragment.adapter.addTransport(newItem)
-                var noTransport: ConstraintLayout
-                noTransport = findViewById(R.id.clNoTransport)
-                if(TransportScreenFragment.adapter.getItemCount() != 0)
-                    noTransport.isGone = true
-                else{
-                    noTransport.isGone = false
-                    noTransport.isVisible = true
-                }
-//            }
-//        }
+        //TODO
     }
 
     override fun onTruckCreated(newItem: VehicleDto) {
-//        thread {
-//            runOnUiThread {
-                vehicleViewModel.addVehicle(newItem)
-//                VehicleScreenFragment.adapter.addTruck()
-//                var noVehicle: ConstraintLayout
-//                noVehicle = findViewById(R.id.clNoVehicle)
-//                if(VehicleScreenFragment.adapter.getItemCount() != 0)
-//                    noVehicle.isGone = true
-//                else{
-//                    noVehicle.isGone = false
-//                    noVehicle.isVisible = true
-//                }
-//            }
-//        }
+        vehicleViewModel.addVehicle(newItem)
     }
 
 
