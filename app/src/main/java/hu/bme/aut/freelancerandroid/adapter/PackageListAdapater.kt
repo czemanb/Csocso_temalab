@@ -63,23 +63,6 @@ class PackageListAdapater(var rowLayout: Int) : RecyclerView.Adapter<PackageList
         onItemClickListener = listener
     }
 
-
-//    fun addPackage(pckg: Packages) {
-//        packages.add(pckg)
-//        notifyItemInserted(packages.size - 1)
-//    }
-//
-//
-//
-//
-//    fun update(pckgs: List<Packages>) {
-//        packages.clear()
-//        packages.addAll(pckgs)
-//        notifyDataSetChanged()
-//    }
-
-
-
     interface PackageItemClickListener{
         fun onItemChanged(item: Packages)
     }

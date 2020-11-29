@@ -49,19 +49,6 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
         holder.truckNameTextView.text = truck.name.toString()
     }
 
-
-//
-//    fun update(vehicles: List<Vehicle>) {
-//        trucks.clear()
-//        trucks.addAll(vehicles)
-//        notifyDataSetChanged()
-//    }
-
-    fun delete(item: Vehicle){
-
-    }
-
-
     interface TruckItemClickListener{
         fun onItemChanged(item: Vehicle)
     }

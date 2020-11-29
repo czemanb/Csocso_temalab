@@ -36,9 +36,6 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
 
     val transports = AsyncListDiffer(this, differCallback)
 
-    //val transports: MutableList<Transfer> = mutableListOf<Transfer>()
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
@@ -49,12 +46,10 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
 
     override fun getItemCount(): Int {
         return transports.currentList.size
-        //return transports.size
     }
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
         val transport = transports.currentList[position]
-        //val transport = transports[position]
 
         holder.dateTextView.text = transport.date.toString()
 
@@ -70,17 +65,6 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
     fun setOnItemClickListener(listener: (Transfer) -> Unit){
         onItemClickListener = listener
     }
-
-//    fun addTransport(transport: Transfer) {
-//        transports.add(transport)
-//        notifyItemInserted(transports.size - 1)
-//    }
-//
-//    fun update(transfers: List<Transfer>) {
-//        transports.clear()
-//        transports.addAll(transfers)
-//        notifyDataSetChanged()
-//    }
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView

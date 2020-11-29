@@ -39,7 +39,11 @@
         android:id="@+id/packageScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
         android:label="fragment_package_screen"
-        tools:layout="@layout/fragment_package_screen" />
+        tools:layout="@layout/fragment_package_screen" >
+        <action
+            android:id="@+id/action_packageScreenFragment_to_packageDetailsFragment"
+            app:destination="@id/packageDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packagesOfTransportFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
@@ -47,5 +51,13 @@
         <argument
             android:name="asd"
             app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
+    </fragment>
+    <fragment
+        android:id="@+id/packageDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.PackageDetailsFragment"
+        android:label="PackageDetailsFragment" >
+        <argument
+            android:name="pack"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Package" />
     </fragment>
 </navigation>

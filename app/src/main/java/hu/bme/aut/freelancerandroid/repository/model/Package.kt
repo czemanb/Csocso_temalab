@@ -1,6 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 data class Package(
@@ -35,7 +36,7 @@ val value: Int,
 @SerializedName("weight")
 val weight: Double
 
-)
+) :Serializable
 
 
 

@@ -44,7 +44,6 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     private fun initRecyclerView(){
         recyclerView = rwPackages
         adapter = TransportListAdapater()
-        //loadItemsInBackground()
         recyclerView.adapter = adapter
     }
 

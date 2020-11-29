@@ -8,6 +8,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
@@ -83,6 +84,11 @@ class PackageScreenFragment : Fragment(R.layout.fragment_package_screen) , Packa
                 requireActivity().supportFragmentManager,
                 AddPackageDialogFragment.TAG
             )
+        }
+
+        PackageScreenFragment.adapter.setOnItemClickListener {
+            val action = PackageScreenFragmentDirections.actionPackageScreenFragmentToPackageDetailsFragment(it)
+            findNavController().navigate(action)
         }
 
         requireActivity().setTitle("Packages")
