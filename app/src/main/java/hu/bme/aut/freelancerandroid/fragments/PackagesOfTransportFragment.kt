@@ -30,7 +30,7 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
     private lateinit var recyclerViewInCar: RecyclerView
     private lateinit var recyclerViewDelivered: RecyclerView
 
-    private lateinit var packages: PackResponse
+    private lateinit var transportPackages: PackResponse
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,9 +40,11 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
 
         val transport = args.asd
 
-        packageViewModel.packs.observe(viewLifecycleOwner) { response ->
+        packageViewModel.fetchTransferPackages(transport.id!!)
+
+        packageViewModel.transferPacks.observe(viewLifecycleOwner) { response ->
             response.data?.let { packResponse ->
-                packages = packResponse
+                transportPackages = packResponse
                 initRecyclerView()
             }
         }
@@ -64,18 +66,30 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
     }
 
     fun load(){
-        adapterWaiting.packages.submitList(packages.filter { p -> p.status == "WAITING" })
-        adapterInCar.packages.submitList(packages.filter { p -> p.status == "INCAR" })
-        adapterDelivered.packages.submitList(packages.filter { p -> p.status == "DELIVERED" })
+        adapterWaiting.packages.submitList(transportPackages.filter { p -> p.status == "WAITING" })
+        adapterInCar.packages.submitList(transportPackages.filter { p -> p.status == "INCAR" })
+        adapterDelivered.packages.submitList(transportPackages.filter { p -> p.status == "DELIVERED" })
     }
 
     override fun onArrowUpClicked(item: Package) {
-        item.status = "INCAR"
+        if(item.status == "DELIVERED"){
+            item.status = "INCAR"
+            packageViewModel.changePackageStatus(item.id.toLong(), "INCAR")
+        }else if(item.status == "INCAR"){
+            item.status = "WAITING"
+            packageViewModel.changePackageStatus(item.id.toLong(), "WAITING")
+        }
         load()
     }
 
     override fun onArrowDownClicked(item: Package) {
-        item.status = "DELIVERED"
+        if(item.status == "WAITING"){
+            item.status = "INCAR"
+            packageViewModel.changePackageStatus(item.id.toLong(), "INCAR")
+        }else if(item.status == "INCAR"){
+            item.status = "DELIVERED"
+            packageViewModel.changePackageStatus(item.id.toLong(), "DELIVERED")
+        }
         load()
     }
 }

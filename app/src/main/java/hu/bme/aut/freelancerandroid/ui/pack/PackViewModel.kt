@@ -17,6 +17,7 @@ import retrofit2.Response
 class PackViewModel(val packRepository: PackRepository):ViewModel() {
 
     val packs: MutableLiveData<Resource<PackResponse>> = MutableLiveData()
+    val transferPacks: MutableLiveData<Resource<PackResponse>> = MutableLiveData()
 
 
     init {
@@ -38,9 +39,9 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
     }
 
     fun fetchTransferPackages(transferId : Long) = viewModelScope.launch {
-        packs.postValue(Resource.Loading())
+        transferPacks.postValue(Resource.Loading())
         val response = packRepository.fetchTransferPackages("Bearer " + GlobalVariable.token,transferId)
-        packs.postValue(handlePackResponse(response))
+        transferPacks.postValue(handlePackResponse(response))
     }
 
     fun changePackageStatus(packageId: Long, status: String) = viewModelScope.launch{
