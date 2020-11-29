@@ -34,7 +34,11 @@
     <fragment
         android:id="@+id/vehicleScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.VehicleScreenFragment"
-        android:label="VehicleScreenFragment" />
+        android:label="VehicleScreenFragment" >
+        <action
+            android:id="@+id/action_vehicleScreenFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packageScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
@@ -59,5 +63,13 @@
         <argument
             android:name="pack"
             app:argType="hu.bme.aut.freelancerandroid.repository.model.Package" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.VehicleDetailsFragment"
+        android:label="VehicleDetailsFragment" >
+        <argument
+            android:name="vehicle"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Vehicle" />
     </fragment>
 </navigation>

@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
@@ -92,6 +93,9 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
             }
         })
 
-
+        VehicleScreenFragment.adapter.setOnItemClickListener {
+            val action = VehicleScreenFragmentDirections.actionVehicleScreenFragmentToVehicleDetailsFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.TruckListAdapter.TruckViewHolder
 import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
+import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 
@@ -47,6 +48,18 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
         //val truck = trucks[position]
 
         holder.truckNameTextView.text = truck.name.toString()
+
+        holder.itemView.apply {
+            setOnClickListener {
+                onItemClickListener?.let { it(truck) }
+            }
+        }
+    }
+
+    private var onItemClickListener: ((Vehicle) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Vehicle) -> Unit){
+        onItemClickListener = listener
     }
 
     interface TruckItemClickListener{
