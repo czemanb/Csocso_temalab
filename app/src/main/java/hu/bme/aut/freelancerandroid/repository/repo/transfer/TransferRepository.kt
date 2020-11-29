@@ -20,6 +20,8 @@ class TransferRepository {
 
     suspend fun getVehicles( vehicleId: Long) = NetworkManager.freelancerApi.getVehicles(vehicleId)
 
+    suspend fun fetchTransferNavigationUrl(authHeader:String?, transferId: Long, originLat: Double, originLong: Double) =
+        NetworkManager.freelancerApi.fetchTransferNavigationUrl(authHeader, transferId, originLat, originLong)
 
 //    suspend fun fetchTransferPackages( transferId: Long): List<Package>{
 //        val packages: MutableList<Package> = mutableListOf()

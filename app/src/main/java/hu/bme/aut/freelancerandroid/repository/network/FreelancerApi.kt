@@ -53,7 +53,15 @@ interface FreelancerApi {
     @GET("transfers")
     suspend fun fetchTransfer(@Header("Authorization")authHeader:String?): Response<TransferResponse>
 
-    @FormUrlEncoded
+    @GET("transfers/navigationUrl/{transferId}")
+    suspend fun fetchTransferNavigationUrl(
+      @Header("Authorization")authHeader:String?,
+      @Path("transferId") transferId: Long,
+      @Query("originLat") originLat: Double,
+      @Query("originLong") originLong: Double
+    ): Response<NavigationUrl>
+
+ @FormUrlEncoded
     @POST("transfers")
     suspend fun addTransfer(@Body transfer: Transfer): Response<Long>
 

@@ -46,5 +46,33 @@
     <fragment
         android:id="@+id/packagesOfTransportFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
-        android:label="PackagesOfTransportFragment" />
+        android:label="PackagesOfTransportFragment" >
+        <action
+            android:id="@+id/action_packagesOfTransportFragment_to_googleMapsFragment"
+            app:destination="@id/googleMapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleMapsFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.GoogleMapsFragment"
+        android:label="GoogleMapsFragment" >
+        <argument
+            android:name="pickUpPoints"
+            app:argType="com.google.android.gms.maps.model.LatLng[]" />
+        <argument
+            android:name="transfer"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer"
+            app:nullable="true" />
+        <argument
+            android:name="destinations"
+            app:argType="com.google.android.gms.maps.model.LatLng[]" />
+        <argument
+            android:name="names"
+            app:argType="string[]" />
+        <argument
+            android:name="pickupTimes"
+            app:argType="string[]" />
+        <argument
+            android:name="deliveryTimes"
+            app:argType="string[]" />
+    </fragment>
 </navigation>

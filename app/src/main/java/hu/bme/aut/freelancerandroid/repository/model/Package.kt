@@ -4,37 +4,40 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class Package(
-@SerializedName("createdAt")
+    @SerializedName("createdAt")
 val createdAt: String,
-@SerializedName("dateLimit")
+    @SerializedName("dateLimit")
 val dateLimit: String,
-@SerializedName("fromLat")
+    @SerializedName("fromLat")
 val fromLat: Double,
-@SerializedName("fromLong")
+    @SerializedName("fromLong")
 val fromLong: Double,
-@SerializedName("id")
+    @SerializedName("id")
 val id: Int,
-@SerializedName("name")
+    @SerializedName("name")
 val name: String,
-@SerializedName("sender")
+    @SerializedName("sender")
 val sender: Sender,
-@SerializedName("size")
+    @SerializedName("size")
 val size: String,
-@SerializedName("status")
+    @SerializedName("status")
 val status: String,
-@SerializedName("toLat")
+    @SerializedName("toLat")
 val toLat: Double,
-@SerializedName("toLong")
+    @SerializedName("toLong")
 val toLong: Double,
-@SerializedName("town")
+    @SerializedName("town")
 val town: Town,
-@SerializedName("transfer")
-val transfer: Transfer,
-@SerializedName("value")
+    @SerializedName("transfer")
+val transfer: Transfer?,
+    @SerializedName("value")
 val value: Int,
-@SerializedName("weight")
-val weight: Double
-
+    @SerializedName("weight")
+val weight: Double,
+    @SerializedName("arriveTime")
+val deliveryTime: String?,
+    @SerializedName("pickupTime")
+val pickupTime: String?
 )
 
 
