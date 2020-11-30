@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -14,10 +15,11 @@ import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
+import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
 import kotlinx.android.synthetic.main.package_row.view.*
 
-class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
+class TransportListAdapater(private val listener: TransportItemClickListener) : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Transfer>() {
@@ -46,19 +48,24 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
     override fun getItemCount(): Int {
         return transports.currentList.size
         //return transports.size
+
+    }
+
+    interface TransportItemClickListener{
+        fun onItemDelete(item: Transfer)
     }
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
         val transport = transports.currentList[position]
         //val transport = transports[position]
-
+        holder.item =transport
         holder.dateTextView.text = transport.date.toString()
-
         holder.itemView.apply {
             setOnClickListener {
                 onItemClickListener?.let { it(transport) }
             }
         }
+
     }
 
     private var onItemClickListener: ((Transfer) -> Unit)? = null
@@ -80,9 +87,13 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView
+        val removeButton : ImageButton
+        var item :Transfer? = null
 
         init{
+            removeButton = itemView.findViewById(R.id.imremovetransport)
             dateTextView = itemView.findViewById(R.id.tvDate)
+            removeButton.setOnClickListener(){ listener.onItemDelete(item!!)}
         }
     }
 }

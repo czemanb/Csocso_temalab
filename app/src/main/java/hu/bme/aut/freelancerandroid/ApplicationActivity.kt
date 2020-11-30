@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
@@ -90,18 +91,19 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
        // }
     }
 
-    override fun onTransportCreated(newItem: Transfer) {
+    override fun onTransportCreated(newItem: TransferDto) {
 //        thread {//todo
 //            runOnUiThread {
                 //TransportScreenFragment.adapter.addTransport(newItem)
-                var noTransport: ConstraintLayout
-                noTransport = findViewById(R.id.clNoTransport)
-                if(TransportScreenFragment.adapter.getItemCount() != 0)
-                    noTransport.isGone = true
-                else{
-                    noTransport.isGone = false
-                    noTransport.isVisible = true
-                }
+        transferViewModel.addTransfer(newItem)
+//                var noTransport: ConstraintLayout
+//                noTransport = findViewById(R.id.clNoTransport)
+//                if(TransportScreenFragment.adapter.getItemCount() != 0)
+//                    noTransport.isGone = true
+//                else{
+//                    noTransport.isGone = false
+//                    noTransport.isVisible = true
+//                }
 //            }
 //        }
     }

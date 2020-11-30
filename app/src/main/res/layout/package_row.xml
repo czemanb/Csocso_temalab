@@ -20,18 +20,24 @@
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent"/>
 
-    <ImageView
-        android:layout_width="0dp"
+    <ImageButton
+        android:id="@+id/imaddtransfer"
+        android:layout_width="20dp"
         android:layout_height="match_parent"
+        android:layout_gravity="right"
         android:layout_weight="2"
-        android:layout_gravity="right"
-        android:src="@drawable/truck_remaining_time"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/truck_remaining_time" />
 
-    <ImageView
-        android:layout_width="0dp"
+    <ImageButton
+        android:id="@+id/imremovepack"
+        android:layout_width="32dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_gravity="right"
-        android:src="@drawable/x"/>
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/x" />
+
+
 
 </LinearLayout>

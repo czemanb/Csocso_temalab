@@ -13,7 +13,7 @@ val fromLat: Double,
 @SerializedName("fromLong")
 val fromLong: Double,
 @SerializedName("id")
-val id: Int,
+val id: Long,
 @SerializedName("name")
 val name: String,
 @SerializedName("sender")

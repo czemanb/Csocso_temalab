@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:minHeight="600dp"
     android:minWidth="400dp"
-    android:weightSum="25">
+    android:weightSum="30">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,25 +49,29 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etPackageValue"
+        android:id="@+id/etPackageName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:hint="Csomag becsült értéke"/>
+        android:hint="Csomag neve" />
+
+    <EditText
+        android:id="@+id/etPackageValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType= "number"
+        android:layout_weight="2"
+        android:hint="Csomag becsült értéke" />
 
     <EditText
         android:id="@+id/etPackageWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType= "number"
         android:layout_weight="2"
         android:hint="Csomag súlya (kg)"/>
 
-    <EditText
-        android:id="@+id/etPackageName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:hint="Csomag neve"/>
+
 
     <EditText
         android:id="@+id/etFromAddress"

@@ -3,6 +3,7 @@ package hu.bme.aut.freelancerandroid.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -47,30 +48,25 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
         //val truck = trucks[position]
 
         holder.truckNameTextView.text = truck.name.toString()
+        holder.item= truck
     }
 
-
-//
-//    fun update(vehicles: List<Vehicle>) {
-//        trucks.clear()
-//        trucks.addAll(vehicles)
-//        notifyDataSetChanged()
-//    }
-
-    fun delete(item: Vehicle){
-
-    }
 
 
     interface TruckItemClickListener{
         fun onItemChanged(item: Vehicle)
+        fun onItemDelete(item: Vehicle)
     }
 
     inner class TruckViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val truckNameTextView : TextView
+        var item :Vehicle? = null
+        val removeButton: ImageButton
 
         init{
+            removeButton = itemView.findViewById(R.id.btnDeleteTruck)
             truckNameTextView = itemView.findViewById(R.id.tvTruckName)
+            removeButton.setOnClickListener(){ listener.onItemDelete(item!!)}
         }
     }
 }

@@ -3,6 +3,7 @@ package hu.bme.aut.freelancerandroid.ui.transfer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.repo.transfer.TransferRepository
 import hu.bme.aut.freelancerandroid.repository.response.TransferResponse
@@ -17,12 +18,18 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
     val transfers: MutableLiveData<Resource<TransferResponse>> = MutableLiveData()
 
     init{
-        fetchTransfer()
+        getUserTransfer(GlobalVariable.activeUser)
     }
 
     fun fetchTransfer()= viewModelScope.launch {
         transfers.postValue(Resource.Loading())
         val response = transferRepository.fetchTransfer("Bearer " + GlobalVariable.token)
+        transfers.postValue(handleTranferResponse(response))
+    }
+
+    fun getUserTransfer(id: Long) = viewModelScope.launch {
+        transfers.postValue(Resource.Loading())
+        val response = transferRepository.fetchUserTransfer("Bearer " + GlobalVariable.token,id)
         transfers.postValue(handleTranferResponse(response))
     }
 
@@ -32,12 +39,13 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
         transfers.postValue(handleTranferResponse(response))
     }
 
-    fun addTransfer(transfer: Transfer) = viewModelScope.launch {
-
+    fun addTransfer(transfer: TransferDto) = viewModelScope.launch {
+        transferRepository.addTransfer("Bearer " + GlobalVariable.token,transfer)
     }
 
     fun deleteTransfer(transferId: Long) = viewModelScope.launch {
-
+        transferRepository.deleteTransfer("Bearer " + GlobalVariable.token,transferId)
+        getUserTransfer(GlobalVariable.activeUser)
     }
 
 

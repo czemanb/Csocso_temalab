@@ -16,24 +16,28 @@
         android:id="@+id/etX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType= "number"
         android:hint="Szelessege"/>
 
     <EditText
         android:id="@+id/etY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType= "number"
         android:hint="Magassaga"/>
 
     <EditText
         android:id="@+id/etZ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType= "number"
         android:hint="Hossza"/>
 
     <EditText
         android:id="@+id/etMaxWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType= "number"
         android:hint="Maximalis suly"/>
 
 </LinearLayout>
