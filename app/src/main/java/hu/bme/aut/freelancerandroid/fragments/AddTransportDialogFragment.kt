@@ -64,7 +64,7 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
 //        val selectedDate = Date(year, month, day)
 //
 //        return Transfer(date = selectedDate)
-        return Transfer(null,null,null,null,null,null)
+        return Transfer(null,null,null,1L,null,null, 0.1, 0.1, 0.1, 0.1, "", "")
     }
 
     companion object{

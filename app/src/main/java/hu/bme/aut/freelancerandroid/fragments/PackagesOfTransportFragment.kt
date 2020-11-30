@@ -1,15 +1,17 @@
 package hu.bme.aut.freelancerandroid.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.model.LatLng
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
+import hu.bme.aut.freelancerandroid.repository.response.TransferResponse
 import hu.bme.aut.freelancerandroid.adapter.SpecialPackageListAdapater
 import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.response.PackResponse
@@ -35,6 +37,29 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnMap.setOnClickListener {
+            if (hasPackages && hasTransfers) {
+                val transfer = transfers.find { t -> t.id == 53L }
+                if (transfer != null) {
+                    val packagesForTransfer = packages.filter { p -> p.transfer?.id == transfer.id }
+                    val names = packagesForTransfer.map { p -> p.name }
+                    val pickupTimes = packagesForTransfer.map { p -> p.pickupTime ?: "" }
+                    val deliveryTimes = packagesForTransfer.map { p -> p.deliveryTime ?: "" }
+                    val destinations = packagesForTransfer.map { p -> LatLng(p.toLat, p.toLong) }
+                    val pickUpPoints = packagesForTransfer.map { p -> LatLng(p.fromLat, p.fromLong) }
+
+                    val action = PackagesOfTransportFragmentDirections.actionPackagesOfTransportFragmentToGoogleMapsFragment(
+                        pickUpPoints = pickUpPoints.toTypedArray(),
+                        transfer = transfer,
+                        destinations = destinations.toTypedArray(),
+                        names = names.toTypedArray(),
+                        pickupTimes = pickupTimes.toTypedArray(),
+                        deliveryTimes = deliveryTimes.toTypedArray()
+                    )
+                    findNavController().navigate(action)
+                }
+            }
+        }
         transferViewModel = (activity as ApplicationActivity).transferViewModel
         packageViewModel = (activity as ApplicationActivity).packViewModel
 
