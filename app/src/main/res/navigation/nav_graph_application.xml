@@ -26,9 +26,6 @@
         <action
             android:id="@+id/action_transportScreenFragment_to_packagesOfTransportFragment"
             app:destination="@id/packagesOfTransportFragment" />
-        <argument
-            android:name="transfer"
-            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -37,12 +34,20 @@
     <fragment
         android:id="@+id/vehicleScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.VehicleScreenFragment"
-        android:label="VehicleScreenFragment" />
+        android:label="VehicleScreenFragment" >
+        <action
+            android:id="@+id/action_vehicleScreenFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packageScreenFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
         android:label="fragment_package_screen"
-        tools:layout="@layout/fragment_package_screen" />
+        tools:layout="@layout/fragment_package_screen" >
+        <action
+            android:id="@+id/action_packageScreenFragment_to_packageDetailsFragment"
+            app:destination="@id/packageDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packagesOfTransportFragment"
         android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
@@ -50,6 +55,9 @@
         <action
             android:id="@+id/action_packagesOfTransportFragment_to_googleMapsFragment"
             app:destination="@id/googleMapsFragment" />
+        <argument
+            android:name="asd"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Transfer" />
     </fragment>
     <fragment
         android:id="@+id/googleMapsFragment"
@@ -74,5 +82,22 @@
         <argument
             android:name="deliveryTimes"
             app:argType="string[]" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/packageDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.PackageDetailsFragment"
+        android:label="PackageDetailsFragment" >
+        <argument
+            android:name="pack"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Package" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.fragments.VehicleDetailsFragment"
+        android:label="VehicleDetailsFragment" >
+        <argument
+            android:name="vehicle"
+            app:argType="hu.bme.aut.freelancerandroid.repository.model.Vehicle" />
     </fragment>
 </navigation>

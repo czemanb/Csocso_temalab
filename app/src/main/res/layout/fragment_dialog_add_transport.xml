@@ -54,4 +54,18 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/etFromAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:hint="Honnan:"/>
+
+    <EditText
+        android:id="@+id/etToAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:hint="Hova:"/>
+
 </LinearLayout>

@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
@@ -41,21 +44,26 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
     private fun initRecyclerView(){
         recyclerView = rwVehicles
         adapter = TruckListAdapter(this)
-        //loadItemsInBackground()
         recyclerView.adapter = adapter
     }
 
-    /*private fun loadItemsInBackground() {
-        thread {
-            val items = database.shoppingItemDao().getAll()
-            runOnUiThread {
-                adapter.update(items)
-            }
+    private fun checkIfThereIsVehicle(view: View){
+        var noVehicle: ConstraintLayout
+        noVehicle = view.findViewById(R.id.clNoVehicle)
+        if (VehicleScreenFragment.adapter.getItemCount() == 0) {
+            noVehicle.isGone = false
+            noVehicle.isVisible = true
         }
-    }*/
+        else {
+            noVehicle.isGone = true
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Vehicles")
+
         btnDialogVehicles.setOnClickListener{
             AddTruckDialogFragment().show(
                 requireActivity().supportFragmentManager,
@@ -69,6 +77,8 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
                 is Resource.Success -> {
                     response.data?.let { vehicleResponse ->
                         adapter.trucks.submitList(vehicleResponse)
+                        checkIfThereIsVehicle(view)
+                        //adapter.trucks.addAll(vehicleResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -83,6 +93,9 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
             }
         })
 
-
+        VehicleScreenFragment.adapter.setOnItemClickListener {
+            val action = VehicleScreenFragmentDirections.actionVehicleScreenFragmentToVehicleDetailsFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

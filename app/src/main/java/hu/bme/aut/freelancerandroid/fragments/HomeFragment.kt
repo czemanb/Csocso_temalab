@@ -22,6 +22,8 @@ class HomeFragment  : Fragment(R.layout.fragment_home_screen){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().setTitle("Home")
+
         navConroller = Navigation.findNavController(view)
 
         package_button.setOnClickListener {

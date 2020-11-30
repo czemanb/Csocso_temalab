@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
@@ -24,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_package_screen.rwPackages
 import kotlinx.android.synthetic.main.fragment_transport_screen.*
 import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
+import kotlinx.android.synthetic.main.truck_row.*
 
 class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     private lateinit var recyclerView: RecyclerView
@@ -33,27 +38,32 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
     val TAG = "TransferScreenFragment"
 
     companion object{
-        public lateinit var adapter: TransportListAdapater
+        lateinit var adapter: TransportListAdapater
     }
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
         adapter = TransportListAdapater()
-        //loadItemsInBackground()
         recyclerView.adapter = adapter
     }
 
-    /*private fun loadItemsInBackground() {
-        thread {
-            val items = database.shoppingItemDao().getAll()
-            runOnUiThread {
-                adapter.update(items)
-            }
+    fun checkIfThereIsTransport(view: View){
+        var noTransport: ConstraintLayout
+        noTransport = view.findViewById(R.id.clNoTransport)
+        if(TransportScreenFragment.adapter.getItemCount() == 0) {
+            noTransport.isGone = false
+            noTransport.isVisible = true
         }
-    }*/
+        else {
+            noTransport.isGone = true
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().setTitle("Transports")
+
         btnDialog.setOnClickListener{
             AddTransportDialogFragment().show(
                 requireActivity().supportFragmentManager,
@@ -68,7 +78,9 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
             when(response) {
                 is Resource.Success -> {
                     response.data?.let { transferResponse ->
-                       adapter.transports.submitList(transferResponse)
+                        adapter.transports.submitList(transferResponse)
+                        checkIfThereIsTransport(view)
+                        //adapter.transports.addAll(transferResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -84,11 +96,8 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
         })
 
         adapter.setOnItemClickListener {
-            Log.d("vvvvvv", "vjhbk")
-            val bundle = Bundle().apply{
-                putSerializable("tranpsort", it)
-            }
-            navConroller.navigate(R.id.action_transportScreenFragment_to_packagesOfTransportFragment, bundle)
+            val action = TransportScreenFragmentDirections.actionTransportScreenFragmentToPackagesOfTransportFragment(it)
+            navConroller.navigate(action)
         }
     }
 }

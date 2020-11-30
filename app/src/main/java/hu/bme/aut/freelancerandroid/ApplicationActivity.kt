@@ -22,6 +22,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
+import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import hu.bme.aut.freelancerandroid.repository.repo.pack.PackRepository
@@ -82,54 +84,19 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             return true
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onPackageCreated(newItem: Packages) {
-        //thread {
-         //   runOnUiThread {
-               // PackageScreenFragment.adapter.addPackage(newItem) /Todo
-//                var noPckg: ConstraintLayout
-//               noPckg = findViewById(R.id.noPackage)
-//               if(PackageScreenFragment.adapter.getItemCount() != 0)
-//                    noPckg.isGone = true
-//                else{
-//                    noPckg.isGone = false
-//                    noPckg.isVisible = true
-//                }
-          //  }
-       // }
+    
+    override fun onPackageCreated(newItem: PackDto?) {
+        packViewModel.addPackage(newItem!!)
     }
 
     override fun onTransportCreated(newItem: Transfer) {
-//        thread {//todo
-//            runOnUiThread {
-                //TransportScreenFragment.adapter.addTransport(newItem)
-                var noTransport: ConstraintLayout
-                noTransport = findViewById(R.id.clNoTransport)
-                if(TransportScreenFragment.adapter.getItemCount() != 0)
-                    noTransport.isGone = true
-                else{
-                    noTransport.isGone = false
-                    noTransport.isVisible = true
-                }
-//            }
-//        }
+        //TODO
+    }
+  
+  override fun onTruckCreated(newItem: VehicleDto) {
+        vehicleViewModel.addVehicle(newItem)
     }
 
-    override fun onTruckCreated(newItem: Vehicle) {
-//        thread {
-//            runOnUiThread {
-//                VehicleScreenFragment.adapter.addTruck(newItem)
-                var noVehicle: ConstraintLayout
-                noVehicle = findViewById(R.id.clNoVehicle)
-                if(VehicleScreenFragment.adapter.getItemCount() != 0)
-                    noVehicle.isGone = true
-                else{
-                    noVehicle.isGone = false
-                    noVehicle.isVisible = true
-                }
-            }
-//        }
-//    }
     private fun locationEnabled(): Boolean {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -155,8 +122,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         } else {
             gpsEnabled = true
         }
-    }
-
+    
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -179,5 +145,4 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
             .create()
             .show()
     }
-
 }

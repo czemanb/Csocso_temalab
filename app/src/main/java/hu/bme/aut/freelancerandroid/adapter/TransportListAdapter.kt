@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
+import hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment
 import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
@@ -31,7 +35,6 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
     }
 
     val transports = AsyncListDiffer(this, differCallback)
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportViewHolder {
         val itemView = LayoutInflater
@@ -62,17 +65,6 @@ class TransportListAdapater() : RecyclerView.Adapter<TransportListAdapater.Trans
     fun setOnItemClickListener(listener: (Transfer) -> Unit){
         onItemClickListener = listener
     }
-
-//    fun addTransport(transport: Transfer) {
-//        transports.add(transport)
-//        notifyItemInserted(transports.size - 1)
-//    }
-//
-//    fun update(transfers: List<Transfer>) {
-//        transports.clear()
-//        transports.addAll(transfers)
-//        notifyDataSetChanged()
-//    }
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView

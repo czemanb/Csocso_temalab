@@ -1,6 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 data class Package(
@@ -20,9 +21,9 @@ val name: String,
 val sender: Sender,
     @SerializedName("size")
 val size: String,
-    @SerializedName("status")
-val status: String,
-    @SerializedName("toLat")
+@SerializedName("status")
+var status: String,
+@SerializedName("toLat")
 val toLat: Double,
     @SerializedName("toLong")
 val toLong: Double,
@@ -38,7 +39,4 @@ val weight: Double,
 val deliveryTime: String?,
     @SerializedName("pickupTime")
 val pickupTime: String?
-)
-
-
-
+) :Serializable

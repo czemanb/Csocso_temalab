@@ -1,6 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Vehicle(
     @SerializedName("cc")
@@ -19,4 +20,4 @@ data class Vehicle(
     val y: Int,
     @SerializedName("z")
     val z: Int
-)
+): Serializable
