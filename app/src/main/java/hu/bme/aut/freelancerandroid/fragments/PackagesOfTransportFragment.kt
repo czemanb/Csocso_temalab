@@ -14,6 +14,7 @@ import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
 import hu.bme.aut.freelancerandroid.repository.response.TransferResponse
 import hu.bme.aut.freelancerandroid.adapter.SpecialPackageListAdapater
 import hu.bme.aut.freelancerandroid.repository.model.Package
+import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.response.PackResponse
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
 import hu.bme.aut.freelancerandroid.ui.transfer.TransferViewModel
@@ -33,44 +34,45 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
     private lateinit var recyclerViewDelivered: RecyclerView
 
     private lateinit var transportPackages: PackResponse
+    private var hasPackages: Boolean = false
+    private lateinit var transport: Transfer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnMap.setOnClickListener {
-            if (hasPackages && hasTransfers) {
-                val transfer = transfers.find { t -> t.id == 53L }
-                if (transfer != null) {
-                    val packagesForTransfer = packages.filter { p -> p.transfer?.id == transfer.id }
-                    val names = packagesForTransfer.map { p -> p.name }
-                    val pickupTimes = packagesForTransfer.map { p -> p.pickupTime ?: "" }
-                    val deliveryTimes = packagesForTransfer.map { p -> p.deliveryTime ?: "" }
-                    val destinations = packagesForTransfer.map { p -> LatLng(p.toLat, p.toLong) }
-                    val pickUpPoints = packagesForTransfer.map { p -> LatLng(p.fromLat, p.fromLong) }
-
-                    val action = PackagesOfTransportFragmentDirections.actionPackagesOfTransportFragmentToGoogleMapsFragment(
-                        pickUpPoints = pickUpPoints.toTypedArray(),
-                        transfer = transfer,
-                        destinations = destinations.toTypedArray(),
-                        names = names.toTypedArray(),
-                        pickupTimes = pickupTimes.toTypedArray(),
-                        deliveryTimes = deliveryTimes.toTypedArray()
-                    )
-                    findNavController().navigate(action)
-                }
-            }
-        }
         transferViewModel = (activity as ApplicationActivity).transferViewModel
         packageViewModel = (activity as ApplicationActivity).packViewModel
 
-        val transport = args.asd
+        transport = args.asd
 
-        packageViewModel.fetchTransferPackages(transport.id!!)
+        packageViewModel.fetchTransferPackages(transport.id)
 
         packageViewModel.transferPacks.observe(viewLifecycleOwner) { response ->
             response.data?.let { packResponse ->
                 transportPackages = packResponse
+                hasPackages = true
                 initRecyclerView()
+            }
+        }
+
+        btnMap.setOnClickListener {
+            if (hasPackages) {
+                val packagesForTransfer = transportPackages.filter { p -> p.transfer?.id == transport.id }
+                val names = packagesForTransfer.map { p -> p.name }
+                val pickupTimes = packagesForTransfer.map { p -> p.pickupTime ?: "" }
+                val deliveryTimes = packagesForTransfer.map { p -> p.deliveryTime ?: "" }
+                val destinations = packagesForTransfer.map { p -> LatLng(p.toLat, p.toLong) }
+                val pickUpPoints = packagesForTransfer.map { p -> LatLng(p.fromLat, p.fromLong) }
+
+                val action = PackagesOfTransportFragmentDirections.actionPackagesOfTransportFragmentToGoogleMapsFragment(
+                    pickUpPoints = pickUpPoints.toTypedArray(),
+                    transfer = transport,
+                    destinations = destinations.toTypedArray(),
+                    names = names.toTypedArray(),
+                    pickupTimes = pickupTimes.toTypedArray(),
+                    deliveryTimes = deliveryTimes.toTypedArray()
+                )
+                findNavController().navigate(action)
             }
         }
     }

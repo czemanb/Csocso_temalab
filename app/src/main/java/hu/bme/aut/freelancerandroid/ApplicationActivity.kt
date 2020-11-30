@@ -122,6 +122,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         } else {
             gpsEnabled = true
         }
+    }
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -134,7 +135,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 
     private fun buildAlertMessageNoGps() {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("This page requires GPS to work properly, do you want to enable it?")
+        builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
             .setCancelable(false)
             .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
                 val enableGpsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
