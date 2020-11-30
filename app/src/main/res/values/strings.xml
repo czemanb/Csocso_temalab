@@ -29,6 +29,10 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="new_transport_item">Uj szallitas</string>
+    <string name="Insurance">Rendelkezem biztosítással</string>
+    <string name="logout_yes">Igen</string>
+    <string name="logout_no">Nem</string>
+    <string name="starttimemassage">Indulás idópontja (óra,perc):</string>
 
     <string-array name="city_names">
         <item>Budapest</item>

@@ -13,6 +13,7 @@ import android.widget.*
 import com.google.android.gms.maps.model.LatLng
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.util.GlobalVariable
 import java.io.IOException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -51,8 +52,8 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
                 else{
                     val myToast = Toast.makeText(
                         requireActivity().applicationContext,
-                        "Kerem minden adatot toltson ki",
-                        Toast.LENGTH_SHORT
+                        "Adatokban hiba van. Kerem minden adatot toltson ki",
+                        Toast.LENGTH_LONG
                     )
                     myToast.setGravity(Gravity.CENTER, 0, 0)
                     myToast.show()
@@ -62,7 +63,18 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
             .create()
     }
 
-    private fun isValid() = nameEditText.text.isNotEmpty()
+    private fun isValid() : Boolean {
+        if (nameEditText.text.isEmpty() ||
+            fromAddressEditText.text.isEmpty() ||
+            toAddressEditText.text.isEmpty() ||
+            weightEditText.text.isEmpty() ||
+            valueEditText.text.isEmpty()){
+            return false
+        }
+        getLocationFromAddress(fromAddressEditText.text.toString()) ?: return false
+        getLocationFromAddress(toAddressEditText.text.toString()) ?: return false
+        return true
+    }
 
     private fun getContentView(): View {
         val contentView =
@@ -114,7 +126,7 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         return p1
     }
 
-    private fun getDateFrom(picker: DatePicker): String { //Todo
+    private fun getDateFrom(picker: DatePicker): String {
         return String.format(
             Locale.getDefault(), "%04d-%02d-%02d",
             picker.year, picker.month + 1, picker.dayOfMonth
@@ -128,33 +140,33 @@ class AddPackageDialogFragment : androidx.fragment.app.DialogFragment() {
         val fromLong: Double
         val toLat : Double
         val fromLat: Double
-//        if (toAddress !=null) { //Todo
-//           toLat =toAddress.latitude
-//            toLong = toAddress.longitude
-//        }else {
-//            return null
-//        }
-//
-//        if (fromAddress !=null) {
-//            fromLat =fromAddress.latitude
-//            fromLong = fromAddress.longitude
-//        }else{
-//            return null
-//        }
+        if (toAddress !=null) {
+           toLat =toAddress.latitude
+            toLong = toAddress.longitude
+        }else {
+            return null
+        }
+
+        if (fromAddress !=null) {
+            fromLat =fromAddress.latitude
+            fromLong = fromAddress.longitude
+        }else{
+            return null
+        }
 
         return PackDto(
             name = nameEditText.text.toString(),
-            size = "S",
+            size = packageSizeSpinner.selectedItem.toString() ?: "S",
             weight = weightEditText.text.toString().toDouble(),
-//            fromLat = fromLat,
-//            toLat = toLat,
-//            fromLong = fromLong,
-//           toLong = toLong,
-            fromLat = 0.0,
-            toLat = 0.0,
-            fromLong = 0.0,
-            toLong = 0.0,
-            senderId = 1,//todo
+            fromLat = fromLat,
+            toLat = toLat,
+            fromLong = fromLong,
+            toLong = toLong,
+//            fromLat = 0.0,
+//            toLat = 0.0,
+//            fromLong = 0.0,
+//            toLong = 0.0,
+            senderId = GlobalVariable.activeUser,
             dateLimit = getDateFrom(datePicker),
             townId = 1,
             value = valueEditText.text.toString().toInt()

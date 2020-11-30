@@ -22,6 +22,8 @@ class UserRepository{
 
     suspend fun loginUser(loginData: LoginData) = NetworkManager.freelancerApi.loginUser(loginData)
 
+    suspend fun getUser(authHeader: String?, userId: Long) = NetworkManager.freelancerApi.getUser(authHeader, userId)
+
 
 //    suspend fun fetchUserPackages(userId: Long): List<Package>{ /todo
 //        val packages: MutableList<Package> = mutableListOf()

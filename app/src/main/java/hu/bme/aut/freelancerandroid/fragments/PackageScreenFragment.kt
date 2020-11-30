@@ -14,6 +14,7 @@ import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
 import hu.bme.aut.freelancerandroid.data.Packages
+import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
 import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.fragment_package_screen.*
@@ -26,19 +27,17 @@ class PackageScreenFragment : Fragment(R.layout.fragment_package_screen) , Packa
     val TAG = "PackageScreenFragment"
 
     companion object{
-        public lateinit var adapter: PackageListAdapater
+        lateinit var adapter: PackageListAdapater
     }
 
-    override fun onItemChanged(item: Packages) {
-        /* thread {
-             database.shoppingItemDao().update(item)
-             Log.d("LoginActivity", "ShoppingItem update was successful")
-         }*/
+    override fun onItemDelete(item: Package) {
+
+        packViewModel.deletePackage(item.id)
     }
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = PackageListAdapater(R.layout.package_row)
+        adapter = PackageListAdapater(R.layout.package_row,this)
         //loadItemsInBackground()
         //recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter

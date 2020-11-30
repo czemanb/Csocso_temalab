@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.ApplicationActivity
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
+import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.response.PackResponse
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
 import hu.bme.aut.freelancerandroid.ui.transfer.TransferViewModel
 import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_packages_of_transport.*
 
-class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_transport) {
+class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_transport),PackageListAdapater.PackageItemClickListener {
 
     val args: PackagesOfTransportFragmentArgs by navArgs()
     lateinit var transferViewModel: TransferViewModel
@@ -50,9 +51,9 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
         recyclerViewWaiting = rwWaiting
         recyclerViewInCar = rwInCar
         recyclerViewDelivered = rwDelivered
-        adapterWaiting = PackageListAdapater(R.layout.package_waiting_row)
-        adapterInCar = PackageListAdapater(R.layout.package_in_car_row)
-        adapterDelivered = PackageListAdapater(R.layout.package_delivered_row)
+        adapterWaiting = PackageListAdapater(R.layout.package_waiting_row,this)
+        adapterInCar = PackageListAdapater(R.layout.package_in_car_row,this)
+        adapterDelivered = PackageListAdapater(R.layout.package_delivered_row,this)
         recyclerViewWaiting.adapter = adapterWaiting
         recyclerViewInCar.adapter = adapterInCar
         recyclerViewDelivered.adapter = adapterDelivered
@@ -60,5 +61,9 @@ class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_tran
         adapterWaiting.packages.submitList(packages.filter { p -> p.status == "WAITING" })
         adapterInCar.packages.submitList(packages.filter { p -> p.status == "INCAR" })
         adapterDelivered.packages.submitList(packages.filter { p -> p.status == "DELIVERED" })
+    }
+
+    override fun onItemDelete(item: Package) {
+
     }
 }

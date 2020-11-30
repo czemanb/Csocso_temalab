@@ -12,6 +12,7 @@ import hu.bme.aut.freelancerandroid.repository.model.User
 import hu.bme.aut.freelancerandroid.repository.network.ServiceInterceptor
 import hu.bme.aut.freelancerandroid.repository.response.LoginResponse
 import hu.bme.aut.freelancerandroid.repository.repo.user.UserRepository
+import hu.bme.aut.freelancerandroid.repository.response.UserResponse
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
 import hu.bme.aut.freelancerandroid.util.GlobalVariable
 import hu.bme.aut.freelancerandroid.util.Resource
@@ -23,58 +24,77 @@ import retrofit2.Response
 
 class LoginViewModel(val userRepository: UserRepository): ViewModel() {
 
-    lateinit var email: String
-    lateinit var password: String
-    val activeUser: MutableLiveData<Resource<Carrier>> = MutableLiveData()
+
+    val activeUser: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
+    val activeUserData: MutableLiveData<Resource<UserResponse>> = MutableLiveData()
+    val newUser : MutableLiveData<Resource<Long>> = MutableLiveData()
 
 
+    fun loginUser(email: String, password:String) = viewModelScope.launch {
+        activeUser.postValue(Resource.Loading())
+        val response = userRepository.loginUser(LoginData(email, password))
+        activeUser.postValue(handleLoginResponse(response))
 
-//    fun loginUser(email: String, password:String) = viewModelScope.launch {
-//        activeUser.postValue(Resource.Loading())
-//        val response = userRepository.loginUser(LoginData(email, password))
-//        val code = response.code()
-//        if (response.code() == 200) {
-//            GlobalVariable.token = response.body()!!.token
-//            Log.e(TAG, "An error occured: $response.body()!!.token")
+    }
+
+    fun addUser(user: RegisterData)= viewModelScope.launch {
+            newUser.postValue(Resource.Loading())
+            val response = userRepository.addUser(user)
+             newUser.postValue(handleRegistersponse(response))
+
+    }
+
+//    fun loginUser(email: String, password:String): String {
+//        lateinit var t :String
+//        runBlocking {
+//            val response = userRepository.loginUser(LoginData(email, password))
+//            if (response.code() == 200) {
+//                t = response.body()!!.token
+//                GlobalVariable.activeUser =response.body()!!.currentUserId
+//               Log.e(TAG, "An error occured: $response.body()!!.token")
+//
+//            }
+//            else{
+//                Log.e(TAG, "An error occured:")
+//            }
 //        }
-//        else
-//            GlobalVariable.token=("")
-//
-//        activeUser.postValue(handleLoginResponse(response))
-//
+//        return t
 //    }
 
-    fun loginUser(email: String, password:String): String {
-        lateinit var t :String
-        runBlocking {
-            val response = userRepository.loginUser(LoginData(email, password))
-            if (response.code() == 200) {
-                t = response.body()!!.token
-               // GlobalVariable.activeUser =response.body()!!.currentUserId
-               Log.e(TAG, "An error occured: $response.body()!!.token")
-
-            }
-            else{
-                Log.e(TAG, "An error occured:")
-            }
-        }
-        return t
+    fun getUser() = viewModelScope.launch {
+        activeUserData.postValue(Resource.Loading())
+        val response = userRepository.getUser("Bearer " + GlobalVariable.token,GlobalVariable.activeUser)
+        activeUserData.postValue(handleUserResponse(response))
     }
 
-    fun getUser(userId: Long) = viewModelScope.launch {
-
-    }
-
-    fun addUser(user: RegisterData) {
-        runBlocking {
-            val response = userRepository.addUser(user)
-            if (response.code() != 200) {
-                Log.e(TAG, "Ezzel az e-mail címmel már regisztráltak!")
-            }
-        }
-    }
+//    fun addUser(user: RegisterData) {
+//        runBlocking {
+//            val response = userRepository.addUser(user)
+//            if (response.code() != 200) {
+//                Log.e(TAG, "Ezzel az e-mail címmel már regisztráltak!")
+//            }
+//        }
+//    }
 
     private fun handleLoginResponse(response: Response<LoginResponse>) : Resource<LoginResponse> {
+        if(response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                return Resource.Success(resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
+    private fun handleRegistersponse(response: Response<Long>) : Resource<Long> {
+        if(response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                return Resource.Success(resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
+    private fun handleUserResponse(response: Response<UserResponse>) : Resource<UserResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
