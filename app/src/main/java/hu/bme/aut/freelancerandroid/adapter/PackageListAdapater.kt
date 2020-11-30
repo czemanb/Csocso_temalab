@@ -69,23 +69,6 @@ class PackageListAdapater(var rowLayout: Int,private  var listener: PackageItemC
     }
 
 
-
-//    fun addPackage(pckg: Packages) {
-//        packages.add(pckg)
-//        notifyItemInserted(packages.size - 1)
-//    }
-//
-//
-//
-//
-//    fun update(pckgs: List<Packages>) {
-//        packages.clear()
-//        packages.addAll(pckgs)
-//        notifyDataSetChanged()
-//    }
-
-
-
     interface PackageItemClickListener{
         fun onItemDelete(item: Package)
     }

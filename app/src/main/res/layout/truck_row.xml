@@ -15,14 +15,19 @@
 
     <TextView
         android:id="@+id/tvTruckName"
+        android:paddingTop="16dp"
         android:layout_width="0dp"
         android:layout_weight="7"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent"/>
 
     <ImageButton
         android:id="@+id/btnDeleteTruck"
         android:layout_width="0dp"
+        android:background="@android:color/transparent"
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:layout_weight="1"

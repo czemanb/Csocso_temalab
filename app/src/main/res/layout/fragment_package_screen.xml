@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/noPackage"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
@@ -50,7 +51,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnDialog1"
+        android:id="@+id/btnAddPackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

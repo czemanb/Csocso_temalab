@@ -50,9 +50,4 @@
         android:label="activity_home_screen"
         tools:layout="@layout/activity_application" />
         tools:layout="@layout/activity_home_screen" />
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="hu.bme.aut.freelancerandroid.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
 </navigation>

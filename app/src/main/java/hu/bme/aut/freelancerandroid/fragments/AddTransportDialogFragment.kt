@@ -127,7 +127,7 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
         return String.format("$hour:$minute:00")
     }
 
-    private fun getTransport(): TransferDto{ //Todo
+    private fun getTransport(): TransferDto{ 
         val fromAddress = getLocationFromAddress(fromAddress.text.toString())
         val fromLong: Double
         val fromLat: Double
@@ -142,7 +142,7 @@ class AddTransportDialogFragment : androidx.fragment.app.DialogFragment() {
         return TransferDto(
             date=getDateFrom(transportDate),
             townId = 1,
-            vehicleId = 1,
+            vehicleId = -49,
             carrierId = GlobalVariable.activeUser ,
             fromLat = fromLat,
             toLat = fromLat,

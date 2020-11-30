@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.data.Packages
+import hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment
 import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
@@ -34,9 +38,6 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     val transports = AsyncListDiffer(this, differCallback)
 
-    //val transports: MutableList<Transfer> = mutableListOf<Transfer>()
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
@@ -47,8 +48,6 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     override fun getItemCount(): Int {
         return transports.currentList.size
-        //return transports.size
-
     }
 
     interface TransportItemClickListener{
@@ -57,7 +56,6 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     override fun onBindViewHolder(holder: TransportViewHolder, position: Int) {
         val transport = transports.currentList[position]
-        //val transport = transports[position]
         holder.item =transport
         holder.dateTextView.text = transport.date.toString()
         holder.itemView.apply {
@@ -73,17 +71,6 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
     fun setOnItemClickListener(listener: (Transfer) -> Unit){
         onItemClickListener = listener
     }
-
-//    fun addTransport(transport: Transfer) {
-//        transports.add(transport)
-//        notifyItemInserted(transports.size - 1)
-//    }
-//
-//    fun update(transfers: List<Transfer>) {
-//        transports.clear()
-//        transports.addAll(transfers)
-//        notifyDataSetChanged()
-//    }
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView

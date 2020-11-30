@@ -24,7 +24,7 @@
         android:layout_height="match_parent"/>
 
     <ImageView
-        android:id="@+id/arrowUpInCar"
+        android:id="@+id/arrowUp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -33,7 +33,7 @@
         android:src="@drawable/arrow_up"/>
 
     <ImageView
-        android:id="@+id/tickInCar"
+        android:id="@+id/arrowDown"
         android:layout_width="0dp"
         android:background="@android:color/transparent"
         android:layout_height="match_parent"
