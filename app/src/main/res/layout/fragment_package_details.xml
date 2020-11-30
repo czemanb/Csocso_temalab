@@ -183,6 +183,12 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnPackageShowInMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_in_map"
+        android:layout_gravity="center_horizontal"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -198,5 +204,4 @@
         android:backgroundTint="#145f80"
         android:text="Back"
         android:layout_marginBottom="10dp"/>
-
 </LinearLayout>
