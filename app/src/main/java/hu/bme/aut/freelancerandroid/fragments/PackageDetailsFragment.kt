@@ -10,8 +10,9 @@ import com.google.android.gms.maps.model.LatLng
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.repository.model.Package
 import kotlinx.android.synthetic.main.fragment_package_details.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
-class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
+class PackageDetailsFragment: Fragment(R.layout.fragment_package_details), View.OnClickListener{
     private val args: PackageDetailsFragmentArgs by navArgs()
     private lateinit var status: TextView
     private lateinit var deadline: TextView
@@ -34,10 +35,10 @@ class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
         name = view.findViewById(R.id.packName)
         status.text = pack.status
         deadline.text = pack.dateLimit
-        weight.text = pack.weight.toString()
+        weight.text = "${pack.weight.toString()} kg"
         size.text = pack.size
         city.text = pack.town.name
-        value.text = pack.value.toString()
+        value.text = "${pack.value.toString()} HUF"
         name.text = pack.name
 
         btnPackageShowInMap.setOnClickListener {
@@ -61,6 +62,14 @@ class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
                 deliveryTimes = deliveryTimes.toTypedArray()
             )
             findNavController().navigate(action)
+        }
+      
+        btnBackButton.setOnClickListener(this)
+    }
+  
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.btnBackButton -> requireActivity().onBackPressed()
         }
     }
 }

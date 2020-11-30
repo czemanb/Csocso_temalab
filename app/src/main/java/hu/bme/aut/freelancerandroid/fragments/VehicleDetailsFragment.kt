@@ -26,8 +26,8 @@ class VehicleDetailsFragment : Fragment(R.layout.fragment_vehicle_details) {
         val vehicle = args.vehicle
 
         name.text = vehicle.name
-        width.text = vehicle.x.toString()
-        length.text = vehicle.y.toString()
-        height.text = vehicle.z.toString()
+        width.text = "${vehicle.x.toString()} cm"
+        length.text = "${vehicle.y.toString()} cm"
+        height.text = "${vehicle.z.toString()} cm"
     }
 }

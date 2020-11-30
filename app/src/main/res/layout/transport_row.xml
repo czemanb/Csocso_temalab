@@ -15,14 +15,19 @@
 
     <TextView
         android:id="@+id/tvDate"
+        android:paddingTop="16dp"
         android:layout_width="0dp"
         android:layout_weight="7"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent"/>
 
     <ImageView
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:layout_weight="1"
         android:layout_gravity="right"
         android:src="@drawable/ic_delete_24"/>
