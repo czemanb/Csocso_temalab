@@ -22,7 +22,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), View.OnClickListene
         tvName.text = user.name
         tvEmail.text = user.email
         tvPhoneNumber.text = user.phonenumber
-        btnEdit.setOnClickListener(this)
         btnBack.setOnClickListener(this)
     }
 
