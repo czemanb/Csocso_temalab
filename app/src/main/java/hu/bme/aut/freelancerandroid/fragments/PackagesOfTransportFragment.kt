@@ -13,7 +13,6 @@ import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.PackageListAdapater
 import hu.bme.aut.freelancerandroid.repository.response.TransferResponse
 import hu.bme.aut.freelancerandroid.adapter.SpecialPackageListAdapater
-import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.response.PackResponse
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
@@ -22,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_package_screen.*
 import kotlinx.android.synthetic.main.fragment_packages_of_transport.*
 
 class PackagesOfTransportFragment  : Fragment(R.layout.fragment_packages_of_transport), SpecialPackageListAdapater.PackageItemClickListener {
-
     val args: PackagesOfTransportFragmentArgs by navArgs()
     lateinit var transferViewModel: TransferViewModel
     lateinit var packageViewModel: PackViewModel

@@ -13,9 +13,9 @@ val dateLimit: String,
 val fromLat: Double,
     @SerializedName("fromLong")
 val fromLong: Double,
-    @SerializedName("id")
-val id: Int,
-    @SerializedName("name")
+@SerializedName("id")
+val id: Long,
+@SerializedName("name")
 val name: String,
     @SerializedName("sender")
 val sender: Sender,

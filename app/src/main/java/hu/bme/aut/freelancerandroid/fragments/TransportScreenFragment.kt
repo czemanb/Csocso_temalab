@@ -30,7 +30,8 @@ import kotlinx.android.synthetic.main.nav_view.*
 import kotlin.concurrent.thread
 import kotlinx.android.synthetic.main.truck_row.*
 
-class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
+class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen),
+    TransportListAdapater.TransportItemClickListener {
     private lateinit var recyclerView: RecyclerView
     lateinit var transferViewModel: TransferViewModel
     private lateinit var navConroller: NavController
@@ -43,7 +44,7 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
 
     private fun initRecyclerView(){
         recyclerView = rwPackages
-        adapter = TransportListAdapater()
+        adapter = TransportListAdapater(this)
         recyclerView.adapter = adapter
     }
 
@@ -99,5 +100,9 @@ class TransportScreenFragment : Fragment(R.layout.fragment_transport_screen) {
             val action = TransportScreenFragmentDirections.actionTransportScreenFragmentToPackagesOfTransportFragment(it)
             navConroller.navigate(action)
         }
+    }
+
+    override fun onItemDelete(item: Transfer) {
+        transferViewModel.deleteTransfer(item.id!!)
     }
 }

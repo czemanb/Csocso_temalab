@@ -24,7 +24,8 @@
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent"/>
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/imremovetransport"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"

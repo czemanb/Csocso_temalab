@@ -37,35 +37,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+
+        android:visibility="gone"
         android:weightSum="10">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kerem valasszon jarmuvet:"
-            android:layout_weight="6"/>
+            android:layout_weight="6"
+            android:text="Kerem valasszon jarmuvet:" />
 
         <Spinner
             android:id="@+id/spinnerVehicle"
-            android:layout_weight="4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etFromAddress"
+        android:id="@+id/etStartFromAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:hint="Honnan:"/>
 
-    <EditText
-        android:id="@+id/etToAddress"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:hint="Hova:"/>
+        android:layout_height="78dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/etStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/starttimemassage" />
+
+        <EditText
+            android:id="@+id/etHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType= "number"
+            android:hint="óra" />
+
+        <EditText
+            android:id="@+id/etMinute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType= "number"
+            android:hint="perc" />
+    </LinearLayout>
+
+
 
 </LinearLayout>

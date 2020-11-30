@@ -1,5 +1,6 @@
 package hu.bme.aut.freelancerandroid.repository.repo.transfer
 
+import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.network.NetworkManager
 
@@ -9,7 +10,7 @@ class TransferRepository {
     suspend fun fetchTransfer(authHeader:String?) = NetworkManager.freelancerApi.fetchTransfer(authHeader)
 
 
-    suspend fun addTransfer(authHeader :String?, transfer: Transfer) = NetworkManager.freelancerApi.addTransfer(authHeader, transfer)
+    suspend fun addTransfer(authHeader :String?, transfer: TransferDto) = NetworkManager.freelancerApi.addTransfer(authHeader, transfer)
 
 
     suspend fun deleteTransfer(authHeader :String?, transferId: Long) = NetworkManager.freelancerApi.deleteTransfer(authHeader, transferId)

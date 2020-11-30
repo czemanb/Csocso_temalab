@@ -41,6 +41,11 @@ class VehicleScreenFragment  : Fragment(R.layout.fragment_vehicle_screen)  , Tru
          }*/
     }
 
+    override fun onItemDelete(item: Vehicle) {
+        Log.e("eee", "valami")
+        vehicleViewModel.deleteVehicle(item.id)
+    }
+
     private fun initRecyclerView(){
         recyclerView = rwVehicles
         adapter = TruckListAdapter(this)

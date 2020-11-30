@@ -1,15 +1,21 @@
 package hu.bme.aut.freelancerandroid.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
 import hu.bme.aut.freelancerandroid.LoginActivity
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.repository.model.RegisterData
 import hu.bme.aut.freelancerandroid.repository.model.User
 import hu.bme.aut.freelancerandroid.ui.user.login.LoginViewModel
+import hu.bme.aut.freelancerandroid.util.GlobalVariable
+import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.register_form.*
 import java.util.regex.Matcher
@@ -25,6 +31,35 @@ class RegisterFormFragment : Fragment(R.layout.register_form), View.OnClickListe
         btnRegister.setOnClickListener(this)
         btnCancel.setOnClickListener(this)
         loginViewModel = (activity as LoginActivity).loginViewModel
+        loginViewModel.newUser.observe(viewLifecycleOwner, Observer { response ->
+            when(response) {
+                is Resource.Success -> {
+                        hideProgressBar()
+                        navController.navigate(R.id.action_registerFormFragment_to_loginFragment)
+
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    response.message?.let { message ->
+                        Snackbar.make(view, "Ilyen email címmel már regisztráltak!", Snackbar.LENGTH_SHORT).show()
+                        Log.e("Register form", "An error occured view: $message")
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+
+            }
+        })
+    }
+
+    private fun hideProgressBar() {
+        paginationProgressBar.isGone=false
+        paginationProgressBar.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        paginationProgressBar.visibility = View.VISIBLE
     }
 
     private fun isValidEmail(string: String): Boolean{
@@ -51,7 +86,7 @@ class RegisterFormFragment : Fragment(R.layout.register_form), View.OnClickListe
                         editTextEmailAddress.requestFocus()
                         editTextEmailAddress.error = "Please enter your email address!"
                     }
-//                    isValidEmail(editTextEmailAddress.text.toString())->{
+//                    isValidEmail(editTextEmailAddress.text.toString())->{ //Todo
 //                        editTextEmailAddress.requestFocus()
 //                        editTextEmailAddress.error = "Not valid email!"
 //                    }
@@ -83,9 +118,10 @@ class RegisterFormFragment : Fragment(R.layout.register_form), View.OnClickListe
                         val phone = editTextPhone.text.toString()
                         val password1 = editTextPassword.text.toString()
                         val password2= editTextPassword2.text.toString()
-                        val newUser = RegisterData(name, email, phone, password1,password2,true)
+                        val hasInsurance = cbInsurance.isChecked
+                        val newUser = RegisterData(name, email, phone, password1,password2,hasInsurance)
                         loginViewModel.addUser(newUser)
-                        navController.navigate(R.id.action_registerFormFragment_to_loginFragment)
+                        //navController.navigate(R.id.action_registerFormFragment_to_loginFragment)
                     }
             }}
             R.id.btnCancel -> requireActivity().onBackPressed()

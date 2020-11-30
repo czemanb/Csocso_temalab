@@ -20,7 +20,7 @@ class VehicleViewModel(val vehicleRepository: VehicleRepository): ViewModel() {
 
 
     init{
-        fetchVehicle()
+        fetchUserVehicle(GlobalVariable.activeUser)
     }
     
     fun fetchVehicle()= viewModelScope.launch {
@@ -30,19 +30,19 @@ class VehicleViewModel(val vehicleRepository: VehicleRepository): ViewModel() {
     }
 
     fun addVehicle(vehicle: VehicleDto) = viewModelScope.launch {
-        val response = vehicleRepository.addVehicle("Bearer " + GlobalVariable.token, vehicle)
-        fetchVehicle()
+        vehicleRepository.addVehicle("Bearer " + GlobalVariable.token, vehicle)
+        fetchUserVehicle(GlobalVariable.activeUser)
     }
 
-    fun fetchUserVehicle(vehicleId: Long) = viewModelScope.launch {
+    fun fetchUserVehicle(userId: Long) = viewModelScope.launch {
         vehicles.postValue(Resource.Loading())
-        val response = vehicleRepository.fetchUserVehicle("Bearer " + GlobalVariable.token, vehicleId)
+        val response = vehicleRepository.fetchUserVehicle("Bearer " + GlobalVariable.token, userId)
         vehicles.postValue(handleVehicleResponse(response))
     }
 
     fun deleteVehicle(vehicleId: Long) = viewModelScope.launch {
         vehicleRepository.deleteVehicle("Bearer " + GlobalVariable.token, vehicleId)
-        fetchVehicle()
+        fetchUserVehicle(GlobalVariable.activeUser)
     }
 
     private fun handleVehicleResponse(response: Response<VehicleResponse>) : Resource<VehicleResponse>? {

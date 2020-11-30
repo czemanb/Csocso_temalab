@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.repo.transfer.TransferRepository
 import hu.bme.aut.freelancerandroid.repository.response.NavigationUrl
@@ -20,7 +21,7 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
     val navigationUrl: MutableLiveData<Resource<NavigationUrl>> = MutableLiveData()
 
     init{
-        fetchTransfer()
+        getUserTransfer(GlobalVariable.activeUser)
     }
 
     fun fetchTransfer()= viewModelScope.launch {
@@ -32,7 +33,6 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
     fun fetchTransferNavigationUrl(transferId: Long, originLat: Double, originLong: Double) =
         viewModelScope.launch {
             navigationUrl.postValue(Resource.Loading())
-            Log.e("fetch", "asdf")
             val response = transferRepository.fetchTransferNavigationUrl(
                 "Bearer " + GlobalVariable.token,
                 transferId, originLat, originLong
@@ -41,6 +41,11 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
             navigationUrl.postValue(handleNavUrlResponse(response))
          }
 
+    fun getUserTransfer(id: Long) = viewModelScope.launch {
+        transfers.postValue(Resource.Loading())
+        val response = transferRepository.fetchUserTransfer("Bearer " + GlobalVariable.token,id)
+        transfers.postValue(handleTranferResponse(response))
+    }
 
     fun getVehiclesTransfer(id: Long)= viewModelScope.launch {
         transfers.postValue(Resource.Loading())
@@ -48,12 +53,13 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
         transfers.postValue(handleTranferResponse(response))
     }
 
-    fun addTransfer(transfer: Transfer) = viewModelScope.launch {
-
+    fun addTransfer(transfer: TransferDto) = viewModelScope.launch {
+        transferRepository.addTransfer("Bearer " + GlobalVariable.token,transfer)
     }
 
     fun deleteTransfer(transferId: Long) = viewModelScope.launch {
-
+        transferRepository.deleteTransfer("Bearer " + GlobalVariable.token,transferId)
+        getUserTransfer(GlobalVariable.activeUser)
     }
 
 

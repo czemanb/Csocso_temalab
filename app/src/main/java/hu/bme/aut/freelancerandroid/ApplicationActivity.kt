@@ -23,6 +23,7 @@ import androidx.navigation.ui.setupWithNavController
 import hu.bme.aut.freelancerandroid.data.Packages
 import hu.bme.aut.freelancerandroid.fragments.*
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
+import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
@@ -89,12 +90,12 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         packViewModel.addPackage(newItem!!)
     }
 
-    override fun onTransportCreated(newItem: Transfer) {
-        //TODO
-    }
-  
+
   override fun onTruckCreated(newItem: VehicleDto) {
         vehicleViewModel.addVehicle(newItem)
+  }
+    override fun onTransportCreated(newItem: TransferDto) {
+        transferViewModel.addTransfer(newItem)
     }
 
     private fun locationEnabled(): Boolean {

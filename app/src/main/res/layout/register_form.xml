@@ -76,8 +76,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="130dp"
+        android:layout_height="79dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/icon2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,27 +88,28 @@
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:text="Cancel"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/cbInsurance" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="24dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/cbInsurance" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbInsurance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rendelkezem biztosítással"
-        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        android:layout_marginTop="24dp"
+        android:text="@string/Insurance"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword2" />
 

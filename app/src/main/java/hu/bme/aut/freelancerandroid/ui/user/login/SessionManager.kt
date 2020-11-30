@@ -16,7 +16,7 @@ class SessionManager(context:Context) {
 
     val KEY_TOKEN = "Token"
 
-    val KEY_EXPIRESIN= "experesIn"
+    val KEY_ID= "ID"
 
     init {
         this._context = context
@@ -24,15 +24,19 @@ class SessionManager(context:Context) {
         editor = pref.edit()
     }
 
-    fun createLoginSession(token:String, time:Int) {
+    fun createLoginSession(token:String, id:Long) {
         editor.putBoolean(IS_LOGIN, true)
         editor.putString(KEY_TOKEN,token)
-        editor.putInt(KEY_EXPIRESIN, time)
+        editor.putLong(KEY_ID, id)
         editor.commit()
     }
 
     fun getToken() :String? {
         return pref.getString(KEY_TOKEN,"token")
+    }
+
+    fun getId() :Long {
+        return pref.getLong(KEY_ID,-1)
     }
 
     fun logoutUser() {
@@ -45,7 +49,7 @@ class SessionManager(context:Context) {
         _context.startActivity(i)
     }
 
-    private fun isLoggedIn():Boolean {
+    fun isLoggedIn():Boolean {
         return pref.getBoolean(IS_LOGIN, false)
     }
 
