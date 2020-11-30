@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
@@ -85,7 +84,7 @@ class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps) , OnMapReadyC
     private fun setTextViewAndButton() {
         if (transfer != null) {
             if (transfer!!.encodedRoute != null) {
-                if (names.size <= 0) {
+                if (names.isEmpty()) {
                     btnStartNavigation.visibility = View.GONE
                     noNavData.text = getString(R.string.no_packages)
                 } else {
@@ -201,7 +200,7 @@ class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps) , OnMapReadyC
     private fun createMarkers(points: List<LatLng>, times: List<String>, avatar: Int, routePart: String) {
         var i = 0
         points.forEach { point ->
-            val snippet = "$routePart time is ${times[i]}"
+            val snippet = "$routePart time is ${if (times[i] != "") times[i] else "not calculated yet"}"
             val clusterMarker = ClusterMarker(point, names[i], snippet, avatar)
             mClusterManager.addItem(clusterMarker)
             i++
@@ -209,10 +208,21 @@ class GoogleMapsFragment : Fragment(R.layout.fragment_google_maps) , OnMapReadyC
     }
 
     private fun centerCamera() {
-        val bottomBoundary = location.latitude - .1
-        val leftBoundary = location.longitude - .1
-        val topBoundary = location.latitude + .1
-        val rightBoundary = location.longitude + .1
+        val bottomBoundary: Double
+        val leftBoundary: Double
+        val topBoundary: Double
+        val rightBoundary: Double
+        if (transfer != null) {
+            bottomBoundary = transfer?.fromLat?.minus(.1)!!
+            leftBoundary = transfer?.fromLong?.minus(.1)!!
+            topBoundary = transfer?.fromLat?.plus(.1)!!
+            rightBoundary = transfer?.fromLong?.plus(.1)!!
+        } else {
+            bottomBoundary = pickUpPoints[0].latitude - .1
+            leftBoundary = pickUpPoints[0].longitude - .1
+            topBoundary = pickUpPoints[0].latitude + .1
+            rightBoundary = pickUpPoints[0].longitude + .1
+        }
 
         val bounds = LatLngBounds(LatLng(bottomBoundary, leftBoundary), LatLng(topBoundary, rightBoundary))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0))

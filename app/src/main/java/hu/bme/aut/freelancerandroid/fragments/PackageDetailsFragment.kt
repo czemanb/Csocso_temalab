@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.maps.model.LatLng
 import hu.bme.aut.freelancerandroid.R
+import hu.bme.aut.freelancerandroid.repository.model.Package
+import kotlinx.android.synthetic.main.fragment_package_details.*
 
 class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
-    val args: PackageDetailsFragmentArgs by navArgs()
+    private val args: PackageDetailsFragmentArgs by navArgs()
     private lateinit var status: TextView
     private lateinit var deadline: TextView
     private lateinit var weight: TextView
@@ -16,10 +20,11 @@ class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
     private lateinit var city: TextView
     private lateinit var value: TextView
     private lateinit var name: TextView
+    private lateinit var pack: Package
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pack = args.pack
+        pack = args.pack
         status = view.findViewById(R.id.pacStatus)
         deadline = view.findViewById(R.id.packDeadline)
         weight= view.findViewById(R.id.packWeight)
@@ -34,5 +39,28 @@ class PackageDetailsFragment: Fragment(R.layout.fragment_package_details) {
         city.text = pack.town.name
         value.text = pack.value.toString()
         name.text = pack.name
+
+        btnPackageShowInMap.setOnClickListener {
+            val names: MutableList<String> = mutableListOf()
+            names.add(pack.name)
+            val pickupTimes: MutableList<String> = mutableListOf()
+            pickupTimes.add(pack.pickupTime ?: "")
+            val deliveryTimes: MutableList<String> = mutableListOf()
+            deliveryTimes.add(pack.deliveryTime ?: "")
+            val destinations: MutableList<LatLng> = mutableListOf()
+            destinations.add(LatLng(pack.toLat, pack.toLong))
+            val pickUpPoints: MutableList<LatLng> = mutableListOf()
+            pickUpPoints.add(LatLng(pack.fromLat, pack.fromLong))
+
+            val action = PackageDetailsFragmentDirections.actionPackageDetailsFragmentToGoogleMapsFragment(
+                pickUpPoints = pickUpPoints.toTypedArray(),
+                transfer = null,
+                destinations = destinations.toTypedArray(),
+                names = names.toTypedArray(),
+                pickupTimes = pickupTimes.toTypedArray(),
+                deliveryTimes = deliveryTimes.toTypedArray()
+            )
+            findNavController().navigate(action)
+        }
     }
 }

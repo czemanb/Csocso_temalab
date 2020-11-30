@@ -91,6 +91,9 @@
         <argument
             android:name="pack"
             app:argType="hu.bme.aut.freelancerandroid.repository.model.Package" />
+        <action
+            android:id="@+id/action_packageDetailsFragment_to_googleMapsFragment"
+            app:destination="@id/googleMapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/vehicleDetailsFragment"
