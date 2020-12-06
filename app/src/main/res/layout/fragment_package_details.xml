@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Csomag neve:"
+            android:text="@string/packname"
             android:textSize="18dp"
             android:textColor="#000000" />
 
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Csomag merete:"
+            android:text="@string/pack_size"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -69,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Kezbesitesi hatarido:"
+            android:text="@string/deadline"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -94,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Csomag statusza:"
+            android:text="@string/packstatus"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -119,7 +119,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Varos:"
+            android:text="@string/city"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -144,7 +144,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Csomag erteke:"
+            android:text="@string/packvalue"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -169,7 +169,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Csomag sulya:"
+            android:text="@string/packweight"
             android:textSize="18dp"
             android:textColor="#000000"/>
 
@@ -202,6 +202,6 @@
         android:layout_gravity="center"
         android:background="@drawable/dashed_white_border"
         android:backgroundTint="#145f80"
-        android:text="Back"
+        android:text="@string/back"
         android:layout_marginBottom="10dp"/>
 </LinearLayout>

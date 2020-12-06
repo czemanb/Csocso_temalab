@@ -5,7 +5,7 @@
     android:id="@+id/layoutPackageScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.PackageScreenFragment">
+    tools:context=".ui.pack.fragments.PackageScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/noPackage"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:textAlignment="center"
-            android:text="Jelenleg nincs csomagja..."
+            android:text="@string/nopackage"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +67,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="606dp" />
+        app:layout_constraintGuide_percent="0.82" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

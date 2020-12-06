@@ -1,8 +1,7 @@
 package hu.bme.aut.freelancerandroid.repository.repo.transfer
 
 import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
-import hu.bme.aut.freelancerandroid.repository.network.NetworkManager
+import hu.bme.aut.freelancerandroid.network.NetworkManager
 
 
 class TransferRepository {

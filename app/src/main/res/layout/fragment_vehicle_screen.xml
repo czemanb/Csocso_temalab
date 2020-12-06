@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4b8071"
-    tools:context=".fragments.PackageScreenFragment">
+    tools:context=".ui.pack.fragments.PackageScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="221dp"
-            android:text="Jelenleg meg nincs felveve jarmuve..."
+            android:text="@string/novehicle"
             android:textSize="24dp"
             android:layout_marginTop="40dp"
             android:textAlignment="center"

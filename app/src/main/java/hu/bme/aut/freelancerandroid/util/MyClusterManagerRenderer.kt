@@ -1,7 +1,6 @@
 package hu.bme.aut.freelancerandroid.util
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.google.android.gms.maps.GoogleMap

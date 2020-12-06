@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.HomeFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_packageScreenFragment"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/transportScreenFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.transfer.fragments.TransportScreenFragment"
         android:label="TransportScreenFragment" >
         <action
             android:id="@+id/action_transportScreenFragment_to_packagesOfTransportFragment"
@@ -29,11 +29,11 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.ProfileFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/vehicleScreenFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.VehicleScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.vehicles.fragments.VehicleScreenFragment"
         android:label="VehicleScreenFragment" >
         <action
             android:id="@+id/action_vehicleScreenFragment_to_vehicleDetailsFragment"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/packageScreenFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.PackageScreenFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.pack.fragments.PackageScreenFragment"
         android:label="fragment_package_screen"
         tools:layout="@layout/fragment_package_screen" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/packagesOfTransportFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.PackagesOfTransportFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.pack.fragments.PackagesOfTransportFragment"
         android:label="PackagesOfTransportFragment" >
         <action
             android:id="@+id/action_packagesOfTransportFragment_to_googleMapsFragment"
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/googleMapsFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.GoogleMapsFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.maps.GoogleMapsFragment"
         android:label="GoogleMapsFragment" >
         <argument
             android:name="pickUpPoints"
@@ -86,7 +86,7 @@
 
     <fragment
         android:id="@+id/packageDetailsFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.PackageDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.pack.fragments.PackageDetailsFragment"
         android:label="PackageDetailsFragment" >
         <argument
             android:name="pack"
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/vehicleDetailsFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.VehicleDetailsFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.vehicles.fragments.VehicleDetailsFragment"
         android:label="VehicleDetailsFragment" >
         <argument
             android:name="vehicle"
@@ -105,7 +105,7 @@
     </fragment>
     <fragment
         android:id="@+id/logoutFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.LogoutFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.auth.LogoutFragment"
         android:label="LogoutFragment" >
         <action
             android:id="@+id/action_logoutFragment_to_homeFragment"
@@ -116,6 +116,6 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment2"
-        android:name="hu.bme.aut.freelancerandroid.ui.user.login.LoginFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.auth.LoginFragment"
         android:label="LoginFragment" />
 </navigation>

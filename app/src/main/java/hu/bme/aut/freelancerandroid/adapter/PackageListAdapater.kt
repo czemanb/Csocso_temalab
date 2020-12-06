@@ -1,24 +1,19 @@
 package hu.bme.aut.freelancerandroid.adapter
 
-import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
-import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.proba.pack1Item
 import hu.bme.aut.freelancerandroid.repository.model.Package
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
-import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
-import kotlinx.android.synthetic.main.package_row.view.*
 
-class PackageListAdapater(var rowLayout: Int,private  var listener: PackageItemClickListener) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
+
+class PackageListAdapater(private var rowLayout: Int, private  var listener: PackageItemClickListener) : RecyclerView.Adapter<PackageListAdapater.PackageViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Package>() {
@@ -59,13 +54,10 @@ class PackageListAdapater(var rowLayout: Int,private  var listener: PackageItemC
     }
 
     private var onItemClickListener: ((Package) -> Unit)? = null
-    private var onDeleteItemClickListener : ((Package) -> Unit)? = null
+
 
     fun setOnItemClickListener(listener: (Package) -> Unit){
         onItemClickListener = listener
-    }
-    fun setOnDeleteItemClickListener(listener: (Package) -> Unit) {
-
     }
 
 
@@ -75,7 +67,7 @@ class PackageListAdapater(var rowLayout: Int,private  var listener: PackageItemC
 
     inner class PackageViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val nameTextView : TextView
-        val removeButton : ImageButton? =itemView.findViewById(R.id.imremovepack)
+        private val removeButton : ImageButton? =itemView.findViewById(R.id.imremovepack)
         var item: Package? = null
 
         init{

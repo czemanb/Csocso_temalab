@@ -5,16 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
-import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.repo.pack.PackRepository
-import hu.bme.aut.freelancerandroid.repository.response.LoginResponse
 import hu.bme.aut.freelancerandroid.repository.response.PackResponse
 import hu.bme.aut.freelancerandroid.util.GlobalVariable
 import hu.bme.aut.freelancerandroid.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class PackViewModel(val packRepository: PackRepository):ViewModel() {
+class PackViewModel(private val packRepository: PackRepository):ViewModel() {
 
     val packs: MutableLiveData<Resource<PackResponse>> = MutableLiveData()
     val transferPacks: MutableLiveData<Resource<PackResponse>> = MutableLiveData()
@@ -25,13 +23,13 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
     }
 
 
-     fun fetchPackages() = viewModelScope.launch {
+     private fun fetchPackages() = viewModelScope.launch {
          packs.postValue(Resource.Loading())
          val response = packRepository.fetchPackages("Bearer " + GlobalVariable.token)
          packs.postValue(handlePackResponse(response))
      }
 
-    fun fetchUserPackages() = viewModelScope.launch {
+    private fun fetchUserPackages() = viewModelScope.launch {
         packs.postValue(Resource.Loading())
         val response = packRepository.fetchUserPackages("Bearer " + GlobalVariable.token,1) //Todo ActiveUserId
         packs.postValue(handlePackResponse(response))
@@ -61,10 +59,7 @@ class PackViewModel(val packRepository: PackRepository):ViewModel() {
 
     fun deletePackage(packageId: Long) = viewModelScope.launch {
         val response =packRepository.deletePackage("Bearer " + GlobalVariable.token, packageId)
-        if(response.code() ==404)
-            Log.e("sas","sas")
-
-        fetchPackages()
+        fetchUserPackages()
     }
 
     private fun handlePackResponse(response: Response<PackResponse>) : Resource<PackResponse>? {

@@ -2,7 +2,6 @@ package hu.bme.aut.freelancerandroid.repository.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
 
 data class Package(
     @SerializedName("createdAt")

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.repo.transfer.TransferRepository
 import hu.bme.aut.freelancerandroid.repository.response.NavigationUrl
 import hu.bme.aut.freelancerandroid.repository.response.TransferResponse
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 
-class TransferViewModel(val transferRepository: TransferRepository): ViewModel(){
+class TransferViewModel(private val transferRepository: TransferRepository): ViewModel(){
 
     val transfers: MutableLiveData<Resource<TransferResponse>> = MutableLiveData()
     val navigationUrl: MutableLiveData<Resource<NavigationUrl>> = MutableLiveData()
@@ -41,7 +40,7 @@ class TransferViewModel(val transferRepository: TransferRepository): ViewModel()
             navigationUrl.postValue(handleNavUrlResponse(response))
          }
 
-    fun getUserTransfer(id: Long) = viewModelScope.launch {
+    private fun getUserTransfer(id: Long) = viewModelScope.launch {
         transfers.postValue(Resource.Loading())
         val response = transferRepository.fetchUserTransfer("Bearer " + GlobalVariable.token,id)
         transfers.postValue(handleTranferResponse(response))

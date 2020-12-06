@@ -2,7 +2,7 @@ package hu.bme.aut.freelancerandroid.repository.repo.pack
 
 
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
-import hu.bme.aut.freelancerandroid.repository.network.NetworkManager
+import hu.bme.aut.freelancerandroid.network.NetworkManager
 
 class PackRepository {
 

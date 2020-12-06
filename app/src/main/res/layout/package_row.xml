@@ -20,7 +20,7 @@
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imaddtransfer"
         android:layout_width="20dp"
         android:layout_height="match_parent"
@@ -37,7 +37,6 @@
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:src="@drawable/x" />
-
 
 
 </LinearLayout>
