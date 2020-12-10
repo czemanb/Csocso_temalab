@@ -2,8 +2,7 @@ package hu.bme.aut.freelancerandroid.repository.repo.vehicle
 
 
 import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
-import hu.bme.aut.freelancerandroid.repository.model.Vehicle
-import hu.bme.aut.freelancerandroid.repository.network.NetworkManager
+import hu.bme.aut.freelancerandroid.network.NetworkManager
 
 
 

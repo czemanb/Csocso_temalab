@@ -1,27 +1,16 @@
 package hu.bme.aut.freelancerandroid.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
-import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.fragments.TransportScreenFragment
-import hu.bme.aut.freelancerandroid.repository.model.Package
 import hu.bme.aut.freelancerandroid.repository.model.Transfer
-import hu.bme.aut.freelancerandroid.repository.model.Vehicle
-import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
-import kotlinx.android.synthetic.main.package_row.view.*
+
 
 class TransportListAdapater(private val listener: TransportItemClickListener) : RecyclerView.Adapter<TransportListAdapater.TransportViewHolder>(){
 
@@ -74,7 +63,7 @@ class TransportListAdapater(private val listener: TransportItemClickListener) : 
 
     inner class TransportViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dateTextView : TextView
-        val removeButton : ImageButton
+        private val removeButton : ImageButton
         var item :Transfer? = null
 
         init{

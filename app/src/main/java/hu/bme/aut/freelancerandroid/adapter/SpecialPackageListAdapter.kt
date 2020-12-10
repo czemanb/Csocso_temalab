@@ -1,26 +1,17 @@
 package hu.bme.aut.freelancerandroid.adapter
 
-import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
-import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.proba.pack1Item
 import hu.bme.aut.freelancerandroid.repository.model.Package
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
-import kotlinx.android.synthetic.main.fragment_dialog_add_package.view.*
-import kotlinx.android.synthetic.main.package_row.view.*
 
-class SpecialPackageListAdapater(var rowLayout: Int, private val listener: SpecialPackageListAdapater.PackageItemClickListener) : RecyclerView.Adapter<SpecialPackageListAdapater.SpecialPackageViewHolder>(){
+class SpecialPackageListAdapater(private var rowLayout: Int, private val listener: PackageItemClickListener) : RecyclerView.Adapter<SpecialPackageListAdapater.SpecialPackageViewHolder>(){
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Package>() {
@@ -76,9 +67,9 @@ class SpecialPackageListAdapater(var rowLayout: Int, private val listener: Speci
     }
 
     inner class SpecialPackageViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val arrowUp: ImageView
-        val arrowDown: ImageView
-        val toAddress : TextView
+        private val arrowUp: ImageView
+        private val arrowDown: ImageView
+        private val toAddress : TextView
 
         init{
             arrowUp = itemView.findViewById(R.id.arrowUp)
@@ -87,7 +78,7 @@ class SpecialPackageListAdapater(var rowLayout: Int, private val listener: Speci
         }
 
         fun initialize(pack: Package, action: PackageItemClickListener){
-            toAddress.text = pack.name.toString()
+            toAddress.text = pack.name
             arrowUp.setOnClickListener{
                 action.onArrowUpClicked(pack)
             }

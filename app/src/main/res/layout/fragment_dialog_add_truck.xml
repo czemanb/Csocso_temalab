@@ -10,34 +10,34 @@
        android:id="@+id/etTruckName"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:hint="A jarmu neve"/>
+       android:hint="@string/truckname"/>
 
     <EditText
         android:id="@+id/etX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType= "number"
-        android:hint="Szelessege"/>
+        android:hint="@string/truckwidth"/>
 
     <EditText
         android:id="@+id/etY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType= "number"
-        android:hint="Magassaga"/>
+        android:hint="@string/truckheight"/>
 
     <EditText
         android:id="@+id/etZ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType= "number"
-        android:hint="Hossza"/>
+        android:hint="@string/trucklength"/>
 
     <EditText
         android:id="@+id/etMaxWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType= "number"
-        android:hint="Maximalis suly"/>
+        android:hint="@string/maxweight"/>
 
 </LinearLayout>

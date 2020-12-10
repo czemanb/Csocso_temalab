@@ -3,12 +3,9 @@ package hu.bme.aut.freelancerandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import hu.bme.aut.freelancerandroid.repository.repo.user.UserRepository
-import hu.bme.aut.freelancerandroid.ui.user.login.LoginViewModel
-import hu.bme.aut.freelancerandroid.ui.user.login.LoginViewModelProviderFactory
-import hu.bme.aut.freelancerandroid.ui.user.login.SessionManager
-import hu.bme.aut.freelancerandroid.util.GlobalVariable
+import hu.bme.aut.freelancerandroid.ui.user.LoginViewModel
+import hu.bme.aut.freelancerandroid.ui.user.LoginViewModelProviderFactory
 
 class LoginActivity : AppCompatActivity(){
 

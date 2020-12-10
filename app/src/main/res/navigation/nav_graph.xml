@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="hu.bme.aut.freelancerandroid.ui.user.login.LoginFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.auth.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
@@ -31,11 +31,11 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.ForgotPasswordFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.auth.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment" />
     <fragment
         android:id="@+id/registerFormFragment"
-        android:name="hu.bme.aut.freelancerandroid.fragments.RegisterFormFragment"
+        android:name="hu.bme.aut.freelancerandroid.ui.user.auth.RegisterFormFragment"
         android:label="RegisterFormFragment" >
         <action
             android:id="@+id/action_registerFormFragment_to_home_screen"

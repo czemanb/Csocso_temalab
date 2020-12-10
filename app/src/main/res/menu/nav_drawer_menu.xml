@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/homeFragment"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/icon_home"/>
     <item
         android:id="@+id/packageScreenFragment"
-        android:title="Packages"
+        android:title="@string/packages"
         android:icon="@drawable/icon_package"/>
     <item
         android:id="@+id/transportScreenFragment"
-        android:title="Transport"
+        android:title="@string/transport"
         android:icon="@drawable/icon_transport"/>
     <item
         android:id="@+id/vehicleScreenFragment"
-        android:title="Vehicles"
+        android:title="@string/vehicles"
         android:icon="@drawable/icon_vehicle"/>
     <item
         android:id="@+id/profileFragment"
-        android:title="Profile"
+        android:title="@string/profile"
         android:icon="@drawable/icon_profile"/>
     <item
         android:id="@+id/logoutFragment"
-        android:title="Log out"
+        android:title="@string/log_out"
         android:icon="@drawable/icon_log_out"/>
 </menu>

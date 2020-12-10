@@ -1,8 +1,6 @@
 package hu.bme.aut.freelancerandroid.repository.dto
 
 
-import hu.bme.aut.freelancerandroid.repository.model.Vehicle
-
 data class TransferDto(
     val date: String?,
     val townId: Long,

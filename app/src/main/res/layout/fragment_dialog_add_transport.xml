@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kerem valasszon varost:"
+            android:text="@string/choosecity"
             android:layout_weight="6"/>
 
         <Spinner
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6"
-            android:text="Kerem valasszon jarmuvet:" />
+            android:text="@string/choosevehicle" />
 
         <Spinner
             android:id="@+id/spinnerVehicle"
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:hint="Honnan:"/>
+        android:hint="@string/honnan"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType= "number"
-            android:hint="óra" />
+            android:hint="@string/hour" />
 
         <EditText
             android:id="@+id/etMinute"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType= "number"
-            android:hint="perc" />
+            android:hint="@string/minute" />
     </LinearLayout>
 
 

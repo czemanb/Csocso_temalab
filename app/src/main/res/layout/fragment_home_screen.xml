@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Packages"
+            android:text="@string/packages"
             android:textSize="70dp"
             android:rotation="340"
             android:textColor="#801a03"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Transport"
+            android:text="@string/transport"
             android:textSize="70dp"
             android:rotation="340"
             android:textColor="#060680"
@@ -72,7 +72,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Vehicles"
+            android:text="@string/vehicles"
             android:rotation="340"
             android:textSize="70dp"
             android:textAlignment="center"

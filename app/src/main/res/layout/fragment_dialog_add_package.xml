@@ -18,7 +18,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kerem valasszon varost:"
+            android:text="@string/choosecity"
             android:layout_weight="7"/>
 
         <Spinner
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valassza ki a csomag meretet:"
+            android:text="@string/choosepacksize"
             android:layout_weight="6"/>
 
         <Spinner
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:hint="Csomag neve" />
+        android:hint="@string/pack_name" />
 
     <EditText
         android:id="@+id/etPackageValue"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:inputType= "number"
         android:layout_weight="2"
-        android:hint="Csomag becsült értéke" />
+        android:hint="@string/pack_value" />
 
     <EditText
         android:id="@+id/etPackageWeight"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:inputType= "number"
         android:layout_weight="2"
-        android:hint="Csomag súlya (kg)"/>
+        android:hint="@string/pack_weigth"/>
 
 
 
@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:hint="Cel cim"/>
+        android:hint="@string/destinationaddress"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -94,7 +94,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="24dp"
-        android:text="Kezbesitesi hatarido"/>
+        android:text="@string/deadine"/>
 
     <DatePicker
         android:id="@+id/dpPackageDate"

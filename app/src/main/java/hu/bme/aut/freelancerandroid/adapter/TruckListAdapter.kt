@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.freelancerandroid.R
 import hu.bme.aut.freelancerandroid.adapter.TruckListAdapter.TruckViewHolder
-import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
-import hu.bme.aut.freelancerandroid.repository.model.Package
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
 import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 
 class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickListener) : RecyclerView.Adapter<TruckViewHolder>(){
@@ -48,7 +45,7 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
         val truck = trucks.currentList[position]
         //val truck = trucks[position]
 
-        holder.truckNameTextView.text = truck.name.toString()
+        holder.truckNameTextView.text = truck.name
         holder.itemView.apply {
             setOnClickListener {
                 onItemClickListener?.let { it(truck) }
@@ -71,7 +68,7 @@ class TruckListAdapter(private val listener: TruckListAdapter.TruckItemClickList
     inner class TruckViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val truckNameTextView : TextView
         var item :Vehicle? = null
-        val removeButton: ImageButton
+        private val removeButton: ImageButton
 
         init{
             removeButton = itemView.findViewById(R.id.btnDeleteTruck)

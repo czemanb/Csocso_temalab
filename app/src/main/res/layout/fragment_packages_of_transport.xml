@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="WAITING"
+            android:text="@string/waiting"
             android:textSize="40dp"
             android:textColor="#5a6c80"
             android:layout_gravity="center"
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="IN CAR"
+            android:text="@string/in_car"
             android:textSize="40dp"
             android:textColor="#5a6c80"
             android:layout_gravity="center"
@@ -92,7 +92,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="DELIVERED"
+            android:text="@string/delivered"
             android:textSize="40dp"
             android:textColor="#5a6c80"
             android:layout_gravity="center"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/dashed_white_border"
             android:backgroundTint="#62802b"
-            android:text="SHOW IN MAP"
+            android:text="@string/show_map"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

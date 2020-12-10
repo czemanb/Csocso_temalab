@@ -13,33 +13,31 @@ import android.provider.Settings
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import hu.bme.aut.freelancerandroid.data.Packages
-import hu.bme.aut.freelancerandroid.fragments.*
 import hu.bme.aut.freelancerandroid.repository.dto.PackDto
 import hu.bme.aut.freelancerandroid.repository.dto.TransferDto
 import hu.bme.aut.freelancerandroid.repository.dto.VehicleDto
-import hu.bme.aut.freelancerandroid.repository.model.Transfer
-import hu.bme.aut.freelancerandroid.repository.model.Vehicle
 import hu.bme.aut.freelancerandroid.repository.repo.pack.PackRepository
 import hu.bme.aut.freelancerandroid.repository.repo.transfer.TransferRepository
+import hu.bme.aut.freelancerandroid.repository.repo.user.UserRepository
 import hu.bme.aut.freelancerandroid.repository.repo.vehicle.VehicleRepository
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModel
 import hu.bme.aut.freelancerandroid.ui.pack.PackViewModelProvedirFactory
+import hu.bme.aut.freelancerandroid.ui.pack.fragments.AddPackageDialogFragment
 import hu.bme.aut.freelancerandroid.ui.transfer.TransferViewModel
 import hu.bme.aut.freelancerandroid.ui.transfer.TransferViewModelProviderFactory
+import hu.bme.aut.freelancerandroid.ui.transfer.fragments.AddTransportDialogFragment
+import hu.bme.aut.freelancerandroid.ui.user.LoginViewModel
+import hu.bme.aut.freelancerandroid.ui.user.LoginViewModelProviderFactory
 import hu.bme.aut.freelancerandroid.ui.vehicles.VehicleViewModel
 import hu.bme.aut.freelancerandroid.ui.vehicles.VehicleViewModelProviderFactory
+import hu.bme.aut.freelancerandroid.ui.vehicles.fragments.AddTruckDialogFragment
 import kotlinx.android.synthetic.main.activity_application.*
-import kotlinx.android.synthetic.main.fragment_vehicle_screen.*
 import kotlinx.android.synthetic.main.nav_view.*
-import kotlin.concurrent.thread
+
 
 lateinit var toggle: ActionBarDrawerToggle
 
@@ -49,6 +47,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
     lateinit var packViewModel: PackViewModel
     lateinit var transferViewModel: TransferViewModel
     lateinit var vehicleViewModel: VehicleViewModel
+    lateinit var loginViewModel: LoginViewModel
     var gpsEnabled = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +61,7 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setTitle("Home")
+        title = "Home"
 
         val packsRepository = PackRepository()
         val packViewModelProviderFactory = PackViewModelProvedirFactory(packsRepository)
@@ -75,6 +74,10 @@ AddTransportDialogFragment.NewTransportItemDialogListener, AddTruckDialogFragmen
         val vehicleRepository = VehicleRepository()
         val vehicleViewModelProviderFactory = VehicleViewModelProviderFactory(vehicleRepository)
         vehicleViewModel = ViewModelProvider(this, vehicleViewModelProviderFactory).get(VehicleViewModel::class.java)
+
+        val userRepository = UserRepository()
+        val loginViewModelProviderFactory = LoginViewModelProviderFactory(userRepository)
+        loginViewModel = ViewModelProvider(this, loginViewModelProviderFactory).get(LoginViewModel::class.java)
 
         navView.setupWithNavController(nav_host_fragment_application.findNavController())
     }
